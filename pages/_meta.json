@@ -1,7 +1,8 @@
 {
-  "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
+  "": "Getting started",
+  "index": "Installation",
+  "another": "Core concepts",
+  "advanced": "Utilities",
   "about": {
     "title": "About",
     "type": "page"

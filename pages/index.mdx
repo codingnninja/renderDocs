@@ -1,11 +1,126 @@
-# Introduction
+# Getting Started with $render
+
+$render makes JSX possible in the browser without virtual DOM. $render JavaScript components with the speed of light in script tags, and esModules.
+
+It's intuitive, super fast but without the headache of virtual DOM.
+
+#### Installation
+
+import { Tabs } from 'nextra/components'
+import { Steps } from 'nextra/components'
+
+<Tabs items={['cdn', 'npx', 'npm']}>
+  <Tabs.Tab> 
  
-Welcome to Nextra! This is a basic docs template. You can use it as a starting point for your own project :)
+    <Steps>
+    ### Add $render with a script.
+    ```html
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body>
+        <div id="root"></div>
 
-## What is Nextra?
+        <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render@1.0.8/dist/umd/bundle.min.js"></script>
+      </body>
+    </html>
+    ```
+  
+    ### Write JSX
+    
+    * Add JSX inline
+    ```html {6,10-14}
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body>
+        <div id="root"></div>
+        <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render@1.0.8/dist/umd/bundle.min.js"></script>
+        <script>
+          const {$render} = render;
+          const Counter = (count = 0) => {
+            return `
+              <div id="counter">
+                <div>${count}</div>
+                <button 
+                  onClick="$render(Counter, ${count + 1})" 
+                  style="height:30px; width:100px">Increase
+                </button>
+              </div>
+            `;
+          };
+        </script>
+      </body>
+    </html>
+    ```
 
-A **simple**, **powerful** and **flexible** site generation framework with everything you love from Next.js.
+    * Add JSX via a link (app.js)
+    ```html
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body>
+        <div id="root"></div>
+        <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render@1.0.8/dist/umd/bundle.min.js"></script>
+        <script src="app.js"></script>
+      </body>
+    </html>
+    ```
+    `app.js` content:
+    ```js {1,6-10}
+    const {$render} = render;
 
-## Documentation
+    const Counter = (count = 0) => {
+      return `
+        <div id="counter">
+          <div>${count}</div>
+          <button 
+            onClick="$render(Counter, ${count + 1})" 
+            style="height:30px; width:100px">Increase
+          </button>
+        </div>
+      `;
+    };
+    ```
+    </Steps>
+  </Tabs.Tab>
 
-The documentation is available at [https://nextra.site](https://nextra.site).
+  <Tabs.Tab> 
+  <Steps>
+    ### Scaffold $render project.
+  ```sh
+  npx create-render-app music-player
+  ```
+
+    ### Change directory to the project.
+  ```sh
+  cd music-player
+  ```
+    ### Run local server.
+  ```sh
+  npm run dev
+  ```
+  </Steps>
+  </Tabs.Tab>
+  <Tabs.Tab>
+    <Steps>
+      ### Install $render with npm.
+    ```sh
+    npm i @codingnninja/render
+    ```
+
+      ### import $render in your project.
+    ```sh
+    import {$render, stringify} from '@codingnninja/render'
+    ```
+    </Steps>
+  </Tabs.Tab>
+</Tabs>
