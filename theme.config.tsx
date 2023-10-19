@@ -6,10 +6,10 @@ import Image from 'next/image'
 const config: DocsThemeConfig = {
   logo: <span><Image width={100} height={20} alt='render logo' src='/renderlogo.png' /></span>,
   project: {
-    link: 'https://github.com/shuding/nextra-docs-template',
+    link: 'https://github.com/codingnninja/renderDocs',
   },
   chat: {
-    link: 'https://discord.com',
+    link: 'https://discord.gg/txz6rgfM',
   },
   docsRepositoryBase: 'https://github.com/codingnninja/renderDocs',
   footer: {
