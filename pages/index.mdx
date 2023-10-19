@@ -2,7 +2,7 @@
 
 $render makes JSX possible in the browser without virtual DOM. $render JavaScript components with the speed of light in script tags, and esModules.
 
-It's intuitive, super fast but without the headache of virtual DOM.
+It's intuitive, super fast and flexible.
 
 #### Installation
 
@@ -33,28 +33,28 @@ import { Steps } from 'nextra/components'
     
     * Add JSX inline
     ```html {6,10-14}
-    <!doctype html>
+    <!DOCTYPE html>
     <html>
       <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
         <div id="root"></div>
         <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render@1.0.8/dist/umd/bundle.min.js"></script>
         <script>
-          const {$render} = render;
+          const { $render } = render;
           const Counter = (count = 0) => {
             return `
               <div id="counter">
-                <div>${count}</div>
                 <button 
                   onClick="$render(Counter, ${count + 1})" 
-                  style="height:30px; width:100px">Increase
+                  style="height:30px; width:100px">Count is ${count}
                 </button>
               </div>
             `;
           };
+          $render(Counter);
         </script>
       </body>
     </html>
@@ -81,14 +81,14 @@ import { Steps } from 'nextra/components'
     const Counter = (count = 0) => {
       return `
         <div id="counter">
-          <div>${count}</div>
           <button 
             onClick="$render(Counter, ${count + 1})" 
-            style="height:30px; width:100px">Increase
+            style="height:30px; width:100px">Count is ${count}
           </button>
         </div>
       `;
     };
+    $render(Counter);
     ```
     </Steps>
   </Tabs.Tab>
