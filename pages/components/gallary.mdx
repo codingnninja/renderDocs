@@ -3,10 +3,27 @@
 Image gallary displays images in sequence.
 
 import { Callout } from 'nextra/components'
- 
+import { Steps } from 'nextra/components'
+import { Tabs } from 'nextra/components'
+
 <Callout type="info" emoji="ℹ️">
-  Note: Don't forget to import $render and stringify.
+  Note: Use Tailwind CSS to view Gallary properly.
 </Callout>
+
+<Steps>
+  ### Import $render utilities
+  <Tabs items={['cdn', 'module']}>
+    <Tabs.Tab> 
+        ```js
+        const { $render, stringify } = render;
+        ```
+    </Tabs.Tab> 
+    <Tabs.Tab> 
+        ```js
+        import {$render, stringify} from '@codingnninja/render'
+        ```
+    </Tabs.Tab> 
+  </Tabs>
 
 ### Gallary component
 ```js
@@ -63,3 +80,10 @@ import { Callout } from 'nextra/components'
     `;  
   }
 ```
+
+### Render Gallary
+
+```js
+$render(Gallary);
+```
+</Steps>
