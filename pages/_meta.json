@@ -1,7 +1,8 @@
 {
   "": "Getting started",
   "index": "Installation",
-  "another": "Core concepts",
+  "concepts": "Core concepts",
+  "components": "Components",
   "advanced": "Utilities",
   "about": {
     "title": "About",
