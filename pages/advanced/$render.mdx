@@ -1,0 +1,108 @@
+# $render utility
+
+$render adds JSX to the DOM with the `#root id` or a target `id` of a component. It makes using JSX directly in the browser without virtual DOM possible.
+
+### Rendering
+
+It is adding JSX to the DOM that happens in the browser without any interaction from users.
+
+* Rendering without props
+
+```js {1} copy
+  function Profile(item = { id: 1, person: {}, children: { a: "yes" } }) {
+    return `
+      <div 
+        id="${item.id}" 
+        person="${stringify(item.person)}"> 
+        ${item.children.a} 
+      </div>
+    `;
+  }
+
+  $render(Profile); //without props
+```
+
+* Rendering with props
+
+```js {8} copy
+
+  const item = { 
+    id: 1, 
+    person: {}, 
+    children: { a: "No" } 
+  }
+
+  function Profile(item) {//without default value
+    return `
+      <div 
+        id="${item.id}" 
+        person="${stringify(item.person)}"> 
+        ${item.children.a} 
+      </div>
+    `;
+  }
+
+  $render(Profile, item);//with props
+```
+
+### Re-rendering
+
+It is adding JSX to the DOM that happens in the browser when you interact with the DOM. 
+
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  Note: A component must be `rendered` and also takes `props or a default props` before it can be re-rendered.
+</Callout>
+
+* Self-contained re-rendering
+```js {8} copy
+const Shuffle = (status=false) => {
+  return `
+    <div id="shuffle">
+      <button class="btn-icon toggle">
+        <span 
+          class="material-symbols-rounded ${status ? 'active': ''}"
+          onclick="$render(Shuffle, ${!status})"
+        >shuffle ${status} </span>
+      </button>
+    </div>
+  `;
+}
+$render(Shuffle);
+```
+* Re-rendering from a controller
+
+You might need to perform some operations you don't want to tie to a component, then you can create reusable utilities.
+
+<Callout type="info" emoji="ℹ️">
+  Note: passing a function with template literals add the function to the DOM. For the function to work, it must end with a `simi-colon(;)` and not contain any comments.
+
+  This issue can be avoided by passing utilities as props or use them via the global utilities custom accessor `$use()`. [Learn more](/utilities/$use)
+</Callout>
+
+```js {8} copy
+function toggle (status) {
+  $render(Shuffle, !status);
+}
+
+const Shuffle = (status=false) => {
+  return `
+    <div id="shuffle">
+      <button class="btn-icon toggle">
+        <span 
+          class="material-symbols-rounded ${status ? 'active': ''}"
+          onclick="$trigger(${toggle}, null, ${status})"
+        >shuffle ${status} </span>
+      </button>
+    </div>
+  `;
+}
+$render(Shuffle);
+```
+
+`$trigger` is another utility $render provides. [Click to learn more](/advanced/$trigger).
+
+If you have rendered `Shuffle` already, you need to remove `$render(Shuffle);` at the end of the code snippets above.
+
+`$render` is a built-in utility to render and re-render JSX without virtual DOM.
