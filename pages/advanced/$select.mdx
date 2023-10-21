@@ -1,0 +1,50 @@
+# $select utility
+
+$select is a unified utility to access the DOM. It accesses single and multiple elements accessible with JavaScript. $select returns an `array` of elements. It supports all `CSS selectors`.
+
+It's like `import` for DOM.
+
+### Selecting an element
+
+To select an element, you need to destructure the `return value of $select` because it is an array.
+
+```js copy
+const [audio] = $select('#audio');
+console.log(audio);
+```
+
+### Selecting grouped elements
+
+Elements selected with `class`, `tag` and other group `selectors` are grouped into one -- an array.
+
+```js copy
+const posts = $select('.post');
+posts.map(post => console.log(post));
+```
+
+### Select single and grouped elements
+
+```js copy
+const [audio, posts, comments] = $select('#audio, .post, .comment');
+
+console.log(audio);
+
+posts.map(post => console.log(post));
+
+comments.map(comment => console.log(comment));
+```
+
+### A complex selection
+
+```js copy
+const [
+    posts,
+    comments,
+    audios,
+    features
+    articles,
+    navs
+] = $select('posts, comments, .audios, #features>.feature, [article], .nav');
+```
+
+`$select` is a simple and unified utility to access the DOM.
