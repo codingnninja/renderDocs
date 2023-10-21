@@ -2,8 +2,9 @@
   "": "Getting started",
   "index": "Installation",
   "concepts": "Core concepts",
-  "components": "Components",
   "advanced": "Utilities",
+  "components": "Components",
+  "common_errors": "Common errors",
   "about": {
     "title": "About",
     "type": "page"

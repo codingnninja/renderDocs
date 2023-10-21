@@ -32,7 +32,7 @@ import { Steps } from 'nextra/components'
     ### Add JSX
     
     * Add JSX inline
-    ```html {6,10-14}
+    ```html {6,10-14} copy
     <!DOCTYPE html>
     <html>
       <head>
@@ -61,7 +61,7 @@ import { Steps } from 'nextra/components'
     ```
 
     * Add JSX via a link (app.js)
-    ```html
+    ```html copy
     <html>
       <head>
         <meta charset="UTF-8">
@@ -74,8 +74,10 @@ import { Steps } from 'nextra/components'
       </body>
     </html>
     ```
+
     `app.js` content:
-    ```js {1,6-10}
+
+    ```js {1,6-10} copy
     const {$render} = render;
 
     const Counter = (count = 0) => {
@@ -96,16 +98,16 @@ import { Steps } from 'nextra/components'
   <Tabs.Tab> 
   <Steps>
     ### Scaffold $render project.
-  ```sh
+  ```sh copy
   npx create-render-app music-player
   ```
 
     ### Change directory to the project.
-  ```sh
+  ```sh copy
   cd music-player
   ```
     ### Run local server.
-  ```sh
+  ```sh copy
   npm run dev
   ```
   </Steps>
@@ -113,12 +115,12 @@ import { Steps } from 'nextra/components'
   <Tabs.Tab>
     <Steps>
       ### Install $render with npm.
-    ```sh
+    ```sh copy
     npm i @codingnninja/render
     ```
 
       ### import $render in your project.
-    ```sh
+    ```sh copy
     import {$render, stringify} from '@codingnninja/render'
     ```
     </Steps>

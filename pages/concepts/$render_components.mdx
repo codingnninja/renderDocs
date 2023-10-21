@@ -1,0 +1,73 @@
+# $render Components
+
+A component is a part of an object that is detachable and pluggable to another object of the same family. For example, a computer has several components such as the monitor, keyboard, mouse and system unit to mention few. For you to have a computer, you need to bring these components together.
+
+Just like in a computer, $render components are detachable and pluggable to another component that supplies suitable props. Components in $render and React are similar except $render uses JavaScript  `template literals` to wrap every `HTML string` to be returned.
+
+* A component without a default value.
+
+```js filename="app.js" copy
+const App = () => {
+  return `
+    <div id="main">
+      <article>
+          <Player />
+          <Playlist />
+          <Overlay />
+      </article>
+    </div>
+  `;
+}
+```
+
+* A component with a default value.
+
+```js filename="list.js" {2} copy
+function List(list) {
+  const listItems = list.map((person) => `<li>${person}</li>`);
+  return `<ul id="list">${listItems}</ul>`;
+}
+```
+
+Or
+
+```js filename="list.js" {2} copy
+const List = (list) => {
+  const listItems = list.map((person) => `<li>${person}</li>`);
+  return `<ul id="list">${listItems}</ul>`;
+}
+```
+
+## Component parameter
+
+A component `function` can only take a `parameter` of any `data type` and can have a default value.
+
+```js filename="counter.js" {5} copy
+const Counter = (count = 0) => {
+  return `
+    <div id="counter">
+      <button 
+        onClick="$render(Counter, ${count + 1})" 
+        style="height:30px; width:100px">Count is ${count}
+      </button>
+    </div>
+  `;
+};
+```
+or 
+
+```js filename="profile.js" {1} copy
+  function Profile(item = { id: 1, person: {}, children: { a: "yes" } }) {
+    return `
+      <div 
+        id="${item.id}" 
+        person="${stringify(item.person)}"> 
+        ${item.children.a} 
+      </div>
+    `;
+  }
+```
+
+Basically, a `$render` component is still a JavaScript function that has an initial capital letter.
+
+
