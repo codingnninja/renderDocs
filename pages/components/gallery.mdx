@@ -26,7 +26,7 @@ import { Tabs } from 'nextra/components'
   </Tabs>
 
   ### Gallery component
-  ```js copy
+  ```js filename="Gallery.js" copy
     const Gallary = () => {
       const images = [
           {src:"https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg", alt:""},
@@ -46,7 +46,7 @@ import { Tabs } from 'nextra/components'
   ```
 
   ### Pagination component
-  ```js copy
+  ```js filename="Pagination.js" copy
     const Pagination = (images) => {
       const listItems = images.map((image, key) => {
         return `
@@ -70,7 +70,7 @@ import { Tabs } from 'nextra/components'
   ```
 
   ### CurrentImage component
-  ```js copy
+  ```js filename="CurrentImage.js" copy
     const CurrentImage = (image) => {
       const {src, alt} = image;
       return `
