@@ -4,7 +4,7 @@ A component is a part of an object that is detachable and pluggable to another o
 
 Just like in a computer, $render components are detachable and pluggable to another component that supplies suitable props. Components in $render and React are similar except $render uses JavaScript  `template literals` to wrap every `HTML string` to be returned.
 
-* A component without a default value.
+* A component without props.
 
 ```js filename="app.js" copy
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
 }
 ```
 
-* A component with a default value.
+* A component with props.
 
 ```js filename="list.js" {2} copy
 function List(list) {
@@ -40,7 +40,7 @@ const List = (list) => {
 
 ## Component parameter
 
-A component `function` can only take a `parameter` of any `data type` and can have a default value.
+A component `function` can only take zero or one `parameter` of any `data type` that can have a default value.
 
 ```js filename="counter.js" {5} copy
 const Counter = (count = 0) => {
