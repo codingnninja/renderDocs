@@ -1,3 +1,42 @@
 # Hydration
 
-Hydration is the process of attaching event handlers to html on the client side but in $render, there is no Hydration and the extra time it takes. What you write is what you get in the browser.
+Hydration is the process of attaching event handlers to html on the client side but in $render, `Hydration` works by default in the browser so there is no need to take some extra time to `re-compile`. What you write is what you get in the browser.
+
+In $render, Hydration works by default. When you wrap a function with template literals while passing it to an event handler in a component, it is hydrated into the component.
+
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  Note: It is recommended to create any utility with a native function.
+</Callout>
+
+```js copy
+function add(props){
+  return props.first + props.second;
+}
+
+function Calculator(){
+  return`
+    <button 
+      onClick="$trigger(${add}, {first:4, second:5})">
+      add
+    </button>
+  `;
+}
+```
+
+The browser will hydrate the `add` function above into the `Calculator` component. It attaches the function to the element returned by the `Calculator` component.
+
+```js copy
+<button 
+  onClick="$trigger(function add(props){
+  return props.first + props.second;
+}, {first:4, second:5})">
+  add
+</button>
+```
+You don't need to wrap a function in template literals `${toggle}` while working with a script tags because all functions are accessible in a `script` tag by default. You only need it in an esModule.
+
+### Avoiding hydrations from template literals
+
+Maybe you don't like how hydrated functions look in the browser, you can avoid hydration by passing functions to components as props or use the utilities method `$use()` provided by $render to use function utilities in the components.

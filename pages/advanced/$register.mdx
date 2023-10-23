@@ -1,0 +1,52 @@
+# $register utility
+
+`$register` utility is only used in esModules to make components accessible to `$render`. If you don't use `$register` in esModules, your components won't be accessible to `$render`.
+
+You don't need to use `$register` when using `$render` in a `script` tag as components are accessible by default.
+
+### $register a component
+
+You only need to $register a component where it is imported and used (not where it is created).
+
+```js copy
+const Shuffle = (status=false) => {
+  return `
+    <div id="shuffle">
+      <button class="btn-icon toggle">
+        <span 
+          class="material-symbols-rounded ${status ? 'active': ''}"
+          onclick="$render(Shuffle, ${!status})"
+        >shuffle ${status} </span>
+      </button>
+    </div>
+  `;
+}
+```
+
+`Shuffle` is created. Now, let use it in `App` component.
+
+```js copy
+  import {Shuffle} from './Shuffle'
+
+  const App = () => {
+  const media = {};
+  return `
+    <div id="main">
+      <article>
+          <Shuffle />
+      </article>
+      <button onClick="transformMedia(${media})">transform media</button>
+    </div>
+  `;
+}
+
+$register(Shuffle);
+```
+
+You have to $register a component where you use it.
+
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  Note: Once you $register once, you don't need to re-register if you have to use it in another component. You only need to register a component once.
+</Callout>

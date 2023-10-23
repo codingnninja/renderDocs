@@ -1,0 +1,44 @@
+# $purify utility
+
+`$purify` is the twin utility of `stringify`. In JavaScript, any object passed via template literals will turn to `[Object object]`. To avoid that from happening, `$render` introduces `stringify` to convert data to a string before passing it to template literals.
+
+By default, `$render` use `$purify` internally on any props passed to a component or any utilities so you don't need to do it yourself. The only time you need `$purify` is when you don't use `$render` component and internal utilities.
+
+That means you need to `$purify` a `stringified` data passed to a function.
+
+```js copy
+ const App = () => {
+  const media = {};
+  return `
+    <div id="main">
+      <article>
+          <Player />
+          <Playlist />
+          <Overlay />
+      </article>
+      <button onClick="transformMedia(${media})">transform media</button>
+    </div>
+  `;
+}
+```
+
+In this case, you need to use `$purify` to convert the argument received to JavaScript equivalent because it doesn't pass through $render component or internal utilities.
+
+* You can't use $purify here
+
+
+```js copy
+function Calculator(){
+  const operands = {first:4, second:5};
+  return`
+    <button 
+      onClick="$trigger(${add}, '${stringify(operands)}')">
+      add
+    </button>
+  `;
+}
+```
+
+You don't need to purify operands in `add` utility as everything passes through an internal utility `$trigger`.
+
+In short, you use `$purify` when you stringify data that doesn't pass through `$render`. 
