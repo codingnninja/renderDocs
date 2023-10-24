@@ -2,7 +2,7 @@
 
 Hydration is the process of attaching event handlers to html on the client side but in $render, `Hydration` works by default in the browser so there is no need to take some extra time to `re-compile`. What you write is what you get in the browser.
 
-In $render, Hydration works by default. When you wrap a function with template literals while passing it to an event handler in a component, it is hydrated into the component.
+When you wrap a function with template literals while passing it to an event handler in a component, it is hydrated into the component.
 
 import { Callout } from 'nextra/components'
 
@@ -11,16 +11,20 @@ import { Callout } from 'nextra/components'
 </Callout>
 
 ```js copy
-function add(props){
-  return props.first + props.second;
+function add(props) {
+  const result = props.first + props.second;
+  $render(Calculator, result);
 }
 
-function Calculator(){
-  return`
-    <button 
-      onClick="$trigger(${add}, {first:4, second:5})">
-      add
-    </button>
+function Calculator(result) {
+  return `
+    <div id="calc">
+      ${result ? `updated to ${result}` : ""}
+      <button 
+        onClick="$trigger(${add}, null, {first:4, second:5})">
+        add
+      </button>
+    </div>
   `;
 }
 ```
@@ -35,8 +39,8 @@ The browser will hydrate the `add` function above into the `Calculator` componen
   add
 </button>
 ```
-You don't need to wrap a function in template literals `${toggle}` while working with a script tags because all functions are accessible in a `script` tag by default. You only need it in an esModule.
+You don't need to wrap a function in template literals `${toggle}` while working with a script tags because all functions are accessible in a `script` tag by default. You only need it in esModules.
 
 ### Avoiding hydrations from template literals
 
-Maybe you don't like how hydrated functions look in the browser, you can avoid hydration by passing functions to components as props or use the utilities method `$use()` provided by $render to use function utilities in the components.
+Maybe you don't like how hydrated functions look in the browser, you can avoid hydration by passing `functions` to components as `props` or use the utilities method `$use()` provided by $render to use `function` utilities in the components.

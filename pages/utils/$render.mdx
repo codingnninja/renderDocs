@@ -52,7 +52,7 @@ It is adding JSX to the DOM that happens in the browser when you interact with t
 import { Callout } from 'nextra/components'
 
 <Callout type="info" emoji="ℹ️">
-  Note: A component must be `rendered` and also takes `props or a default props` before it can be re-rendered.
+  Note: A re-renderable component must have a wrapping `div` or `section` tag with an `ID`.
 </Callout>
 
 * Self-contained re-rendering
@@ -76,9 +76,9 @@ $render(Shuffle);
 You might need to perform some operations you don't want to tie to a component, then you can create reusable utilities.
 
 <Callout type="info" emoji="ℹ️">
-  Note: passing a function with template literals add the function to the DOM. For the function to work, it must end with a `simi-colon(;)` and not contain any comments.
+  Note: passing a function with template literals adds the function to the DOM. For the function to work, it must end with a `simi-colon(;)` and not contain any comments.
 
-  This issue can be avoided by passing utilities as props or use them via the global utilities custom accessor `$use()`. [Learn more](/utilities/$use).
+  This issue can be avoided by passing utilities as props or use them via the global utility accessor `$use()`. [Learn more](https://render-docs.verce.co/utilities/$use).
 </Callout>
 
 ```js {8} copy
@@ -101,8 +101,8 @@ const Shuffle = (status=false) => {
 $render(Shuffle);
 ```
 
-`$trigger` is another utility $render provides. [Click to learn more](/advanced/$trigger).
+`$trigger` is another utility $render provides. [Click to learn more](https://render-docs.verce.co/advanced/$trigger).
 
-If you have rendered `Shuffle` already, you need to remove `$render(Shuffle);` at the end of the code snippets above.
+If you have rendered `Shuffle`, you need to remove `$render(Shuffle);` at the end of the code snippets above.
 
 `$render` is a built-in utility to render and re-render JSX without virtual DOM.

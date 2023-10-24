@@ -1,0 +1,68 @@
+# Stringify utility
+
+`stringify` is a built-in utility in `$render` to convert data to a string in template literals so that it doesn't turn to [Object object]. `Stringify` takes a parameter of any data type.
+
+import { Steps } from 'nextra/components'
+import { Callout } from 'nextra/components'
+
+### How to use stringify
+
+<Steps>
+### Open inverted comma.
+```sh copy
+'
+```
+### Add stringify with data in template literals object ${}.
+```sh copy
+'${stringify(data)}
+```
+
+### Close inverted comma.
+```sh copy
+'${stringify(data)}'
+```
+</Steps>
+
+You should always use stringify on data in template literals object ${} like `'${stringify(data)}'`. If not an error will be thrown.
+
+<Callout type="info" emoji="ℹ️">
+  Note: Don't forget to always check common errors in the docs whenever you get an error.
+</Callout>
+
+### Stringify data
+
+```js {1} copy
+const App = () => {
+  const person = {
+    id: 1,
+    name: 'Alice',
+    age: 24
+  }
+
+  return `
+    <div id="main">
+      <article>
+        <Profile person=${stringify(person)} />
+      </article>
+    </div>
+  `;
+}
+
+function Profile(person) {
+  return `
+    <div 
+      id="${person.id}"> 
+      ${person.name} is ${person.age} year old 
+    </div>
+  `;
+}
+```
+
+In the `App` component, we use `stringify` to pass `person` as a `prop` to the `Profile` component because any variable with an object or array of objects value used in template literals turns to [Object object]. 
+
+To avoid it, you need to use `stringify` on any data containing object.
+
+<Callout type="info" emoji="ℹ️">
+  Note: Other values like number, boolean and function could be passed without using `stringify`. `stringify` is only needed for `objects` and `arrays of objects`.
+</Callout>
+

@@ -23,8 +23,13 @@ const App = () => {
 * A component with props.
 
 ```js filename="list.js" {2} copy
+const person = {
+  name: 'Alice',
+  age: 24
+}
+
 function List(list) {
-  const listItems = list.map((person) => `<li>${person}</li>`);
+  const listItems = list.map((person) => `<li>${person.name}</li>`);
   return `<ul id="list">${listItems}</ul>`;
 }
 ```
@@ -32,8 +37,13 @@ function List(list) {
 `Or`
 
 ```js filename="list.js" {2} copy
+const person = {
+  name: 'Alice',
+  age: 24
+}
+
 const List = (list) => {
-  const listItems = list.map((person) => `<li>${person}</li>`);
+  const listItems = list.map((person) => `<li>${person.name}</li>`);
   return `<ul id="list">${listItems}</ul>`;
 }
 ```
@@ -62,7 +72,7 @@ const Counter = (count = 0) => {
     return `
       <div 
         id="${item.id}" 
-        person="${stringify(item.person)}"> 
+        person="${item.person}"> 
         ${item.children.a} 
       </div>
     `;

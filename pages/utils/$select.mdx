@@ -49,13 +49,13 @@ const [
 
 ### Handling variable re-assignment with $select
 
-It is recommended to use `$select` with `const` until you need to re-assign a variable. Then, you can select such a variable separately `$select` and `let`.
+It is recommended to use `$select` with `const` until you need to re-assign a variable. Then, you can select such a variable separately using `$select` and `let`.
 
 ```js copy
 const [audio, posts, comments] = $select('#audio, .post, .comment');
 ```
 
-So when we need to re-assign the audio element, we can write the selection.
+So when we need to re-assign the `audio` element, we can re-write the code snippet.
 
 ```js copy
 let audio = $select('#audio');
@@ -65,3 +65,5 @@ const [posts, comments] = $select('.post, .comment');
 Going with `const` and `$select` by default helps to avoid unnecessary bugs.
 
 `$select` is a unified utility to access the DOM.
+
+### Handling self-selection in a component

@@ -1,0 +1,120 @@
+# $trigger utility
+
+`$trigger` is used to call an action when user interact with certain elements. That means you can use it to trigger an action when an interaction like click, hover and so on happens.
+
+```js
+$trigger(function, selectors, data?optional)
+```
+
+It takes three parameters -- `function utility`, `element selector(s)` and `data`.
+
+`function` is a compulsory argument while `selectors` could be replaced with `null` when you don't need to select any elements but `data` is optional.You must always put the function argument in template literals for hydration.
+
+```js copy
+$trigger(${function}, selectors, data);
+```
+
+### $trigger an action without selectors and data parameters
+
+```js copy
+function add(){
+  //code snippet here;
+}
+
+function Calculator(result) {
+  return `
+    <div id="calc">
+      ${result ? `updated to ${result}` : ""}
+      <button 
+        onClick="$trigger(${add})">
+        add
+      </button>
+    </div>
+  `;
+}
+```
+
+### $trigger an action with only selectors parameter
+
+```js copy
+
+function next(elements){
+  const [audio, songs] = elements;
+  //code here;
+}
+
+function Next(song) {
+  return `
+    <div id="next">
+      <button 
+        onClick="$trigger(${next}, '#audio${song.id}, .song')">
+        add
+      </button>
+    </div>
+  `;
+}
+```
+
+### $trigger an action with only data.
+
+You need to replace selectors with `null` when you don't need to select any elements.
+
+```js copy
+function previous(song){
+  //code here;
+}
+
+function Previous(song) {
+  return `
+    <div id="previous">
+      <button 
+        onClick="$trigger(${previous}, null, '${stringify(song)}')">
+        add
+      </button>
+    </div>
+  `;
+}
+```
+
+### $trigger an action with both selectors and data parameters
+
+```js copy
+function Next(song) {
+  return `
+    <div id="next">
+      <button 
+        onClick="$trigger(${add}, '#audio${song.id}, .song'), '${stringify(song)}'">
+        add
+      </button>
+    </div>
+  `;
+}
+```
+
+### Why not use JavaScript functions only?
+
+* Using JavaScript function without $trigger
+
+```js copy
+function add(props) {
+  const result = props.first + props.second;
+  $render(Calculator, result);
+}
+
+function Calculator(result) {
+  return `
+    <div id="calc">
+      ${result ? `updated to ${result}` : ""}
+      <button 
+        onClick="add({first:4, second:5})">
+        add
+      </button>
+    </div>
+  `;
+}
+```
+Normally, you can trigger an action after rendering by using JavaScript functions; then, why do you need `$trigger`?
+
+You need to `$trigger` instead for consistency. You can use a JavaScript function only at almost everywhere you need `$trigger` and it will work in a `script` tag. The problem is it won't work in esModules as the functions won't be accessible.
+
+Use `$trigger` with template literals to hydrate such a function into the DOM so that it will always be accessible. Additionally, `$trigger` allows you to pass elements and data to the function.
