@@ -1,6 +1,6 @@
 # Stringify utility
 
-`stringify` is a built-in utility in `$render` to convert data to a string in template literals so that it doesn't turn to [Object object]. `Stringify` takes a parameter of any data type.
+`stringify` is a built-in utility in `$render` to convert data to a string in template literals so that it doesn't turn to [object Object]. `Stringify` takes a parameter of any data type.
 
 import { Steps } from 'nextra/components'
 import { Callout } from 'nextra/components'
@@ -58,7 +58,7 @@ function Profile(person) {
 }
 ```
 
-In the `App` component, we use `stringify` to pass `person` as a `prop` to the `Profile` component because any variable with an object or array of objects value used in template literals turns to [Object object]. 
+In the `App` component, we use `stringify` to pass `person` as a `prop` to the `Profile` component because any variable with an object or array of objects value used in template literals turns to [object Object]. 
 
 To avoid it, you need to use `stringify` on any data containing object.
 
