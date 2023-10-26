@@ -2,7 +2,8 @@
   "": "Getting started",
   "index": "Installation",
   "concepts": "Core concepts",
-  "utils": "Utilities",
+  "utils": "Built-in Utilities",
+  "other_utilities": "Other Utilities",
   "components": "Components",
   "common_errors": "Common errors",
   "about": {
