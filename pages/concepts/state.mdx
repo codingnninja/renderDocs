@@ -54,25 +54,26 @@ It suitable when you only need to pass one or few properties around for re-rende
 
 * Composite state in a $render component
 
-Component state is used in a component when a component has only many view properties.
+Composite state is used in a component when a component has many view properties.
 
-```js {2}
+```js {1}
 const MovingDot = (coordinates = { x:0, y:3 }) {
  // code
 }
+```
 
 `or`
 
 ```js {2}
 const MovingDot = (props) {
-   const coordinates = props || { x:0, y:3 };
+  const coordinates = props || { x:0, y:3 };
    // code
 }
 ```
 
 Composite state is suitable when you have to pass many properties around for re-rendering.
 
-### State in a global context
+### State in the global scope
 
 A global state is the current or latest data of an app that is accessible to all parts of the app. A global state can be used from anywhere in an application. 
 
@@ -86,41 +87,4 @@ In $render, you can use `$createContext() and $useContext()` in any component to
 
 In short, the global component context is like the React context but with a twist.
 
-```js copy {1}
-const Count = (count = 0) {
-  //component body 
-}
-```
-
-`or`
-
-```js copy {1}
-const Count = (prop) {
-  const count = prop || 0;
-
-}
-```
-
-You can declare your state in unit like above.
-
-It suitable when you only need to pass one or few properties around for re-rendering.
-
-* Composite state in a $render component
-
-Component state is used in a component when a component has only many view properties.
-
-```js {2}
-const MovingDot = (coordinates = { x:0, y:3 }) {
- // code
-}
-
-`or`
-
-```js {2}
-const MovingDot = (props) {
-   const coordinates = props || { x:0, y:3 };
-   // code
-}
-```
-
-Composite state is suitable when you have to pass many properties around for re-rendering.
+State is created within a component or global scope and it can be passed down to children components as `props` in short for properties.

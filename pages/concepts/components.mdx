@@ -23,10 +23,10 @@ const App = () => {
 * A component with props.
 
 ```js filename="list.js" {2} copy
-const person = {
+const list = [{
   name: 'Alice',
   age: 24
-}
+}];
 
 function List(list) {
   const listItems = list.map((person) => `<li>${person.name}</li>`);
@@ -37,10 +37,10 @@ function List(list) {
 `Or`
 
 ```js filename="list.js" {2} copy
-const person = {
+const persons = [{
   name: 'Alice',
   age: 24
-}
+}]
 
 const List = (list) => {
   const listItems = list.map((person) => `<li>${person.name}</li>`);

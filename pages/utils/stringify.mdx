@@ -10,16 +10,16 @@ import { Callout } from 'nextra/components'
 <Steps>
 ### Open inverted comma.
 ```sh copy
-'
+"
 ```
 ### Add stringify with data in template literals object ${}.
 ```sh copy
-'${stringify(data)}
+"${stringify(data)}
 ```
 
 ### Close inverted comma.
 ```sh copy
-'${stringify(data)}'
+"${stringify(data)}"
 ```
 </Steps>
 
@@ -42,7 +42,7 @@ const App = () => {
   return `
     <div id="main">
       <article>
-        <Profile person=${stringify(person)} />
+        <Profile person="${stringify(person)}" />
       </article>
     </div>
   `;

@@ -1,2 +1,17 @@
 # Contexts
 
+A context is a point of operations or availabilities, that is, a place or area where some operations take place. Some call it execution context.
+
+If an operation opens or an identifier is accessible within a component, then it is the context of that component.
+
+```js filename="list.js" {2} copy
+const List = () => {
+  const list = {
+    name: 'Alice',
+    age: 24
+  };
+  return `<Person id="list"> ${list.name} />`;
+}
+```
+
+The `list` variable and the `Person` component are in the context of the `List` component because they open or only accessible within the `List` component. 
