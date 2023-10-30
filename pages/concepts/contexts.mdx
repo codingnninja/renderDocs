@@ -2,7 +2,7 @@
 
 A context is a point of operations or availabilities, that is, a place or area where some operations take place. Some call it execution context.
 
-If an operation opens or an identifier is accessible within a component, then it is the context of that component.
+If an operation happens within a component, then it is in the context of that component.
 
 ```js filename="list.js" {2} copy
 const List = () => {
@@ -14,4 +14,7 @@ const List = () => {
 }
 ```
 
-The `list` variable and the `Person` component are in the context of the `List` component because they open or only accessible within the `List` component. 
+The `list` variable and the `Person` component are in the context of the `List` component because they execute within the `List` component.
+
+Improper use of contexts always lead to what is called `Prop drilling` in React. [Learn more]() on how to avoid `prop drilling` intuitively in any component based UI libraries.
+

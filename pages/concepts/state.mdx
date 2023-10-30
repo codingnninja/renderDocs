@@ -1,10 +1,10 @@
 # State
 
-State is current data which is liable to change based on predefined or user interactions. In $render, state is declared with a normal JavaScript variable with an assigned value. There are two kind of state -- unit and composite state.
+State is current data which is liable to change based on predefined or user interactions. In `$render`, state is declared with a normal JavaScript variable with an assigned value. There are two kinds of state -- unit and composite state.
 
 ### Unit state
 
-It is a state that represent a property of a component.
+It is a state that represent a property of an entity (an app, a module, a  class, a function or a component).
 
 ```js
 const color = 'blue';
@@ -12,7 +12,7 @@ const color = 'blue';
 
 ### Composite state
 
-It is a state declaration to represent every property of an entity (an object, an app or a component. An object is used for a composite state in Javascript to contain all properties needed in the component.
+It is a state declaration to represent every property of an entity (an object, an app or a component). An object is used for a composite state in Javascript to contain all properties needed in the component.
 
 ```js
 const person = {
@@ -23,13 +23,13 @@ const person = {
 }
 ```
 
-State can be viewed in two context in $render -- app and component context.
+State can be viewed in two context in $render -- app and component contexts.
 
 ### State in a local component context
 
-A component state is the current or latest data of the component. Components in $render can use unit and composite state.
+A component state is the current or latest data of the component. Components in `$render` can use unit and composite state.
 
-* Unit state in a $render component
+* Unit state in a `$render` component
 
 Unit state is used in a component when a component has only one view property.
 
@@ -50,9 +50,9 @@ const Count = (prop) {
 
 You can declare your state in unit like above.
 
-It suitable when you only need to pass one or few properties around for re-rendering.
+It suitable when you only need to pass one property around for re-rendering.
 
-* Composite state in a $render component
+* Composite state in a `$render` component
 
 Composite state is used in a component when a component has many view properties.
 
@@ -77,11 +77,17 @@ Composite state is suitable when you have to pass many properties around for re-
 
 A global state is the current or latest data of an app that is accessible to all parts of the app. A global state can be used from anywhere in an application. 
 
-In $render, you can use `$state()` in any component to access the state of you application. [Learn more](utils/$state()) 
+In `$render`, you can use `$state()` in any component to access the state of you application. [Learn more](utils/$state()).
+
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  Note: always make sure anything accessible to the `$state()` utility is needed by most parts of your application if not all parts.
+</Callout>
 
 ### Global component context.
 
-It is state of a component stored in the global scope but only accessible by the component and any component that subscribes to the context. 
+It is state of a component stored in a global state but only accessible by the component and any component that subscribes to the context. 
 
 In $render, you can use `$createContext() and $useContext()` in any component to create and access `a global component context`. [Learn more](utils/$state()) 
 

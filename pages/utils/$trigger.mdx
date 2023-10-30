@@ -115,6 +115,6 @@ function Calculator(result) {
 ```
 Normally, you can trigger an action after rendering by using JavaScript functions; then, why do you need `$trigger`?
 
-You need to `$trigger` instead for consistency. You can use a JavaScript function only at almost everywhere you need `$trigger` and it will work in a `script` tag. The problem is it won't work in esModules as the functions won't be accessible.
+You need to `$trigger` instead for consistency. You can use a JavaScript function whenever you need `$trigger` and it will work in a `script` tag. The problem is it won't work in esModules as the functions won't be accessible.
 
-Use `$trigger` with template literals to hydrate such a function into the DOM so that it will always be accessible. Additionally, `$trigger` allows you to pass elements and data to the function.
+Use `$trigger` with template literals to hydrate such a function into the DOM so that it will always be accessible. Additionally, `$trigger` allows you to pass elements and data to functions.

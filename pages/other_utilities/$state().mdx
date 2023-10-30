@@ -1,3 +1,158 @@
-# $state()
+# $state() utility
 
-`$state()` is an accessor to get state of your application anywhere in your app. 
+`$state()` is an accessor to get the state of your application anywhere in your app. It is a customizable utility to handle the global state of your applications.
+
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  Note: $state() is only useful when you are using esModules. You don't need it in a `script` tag (functions are accessible by default). 
+</Callout>
+
+### Setup $state() utility
+
+import { Steps } from 'nextra/components'
+
+<Steps>
+### Create `stateAndUtilSetup.js`
+
+If you scaffold your application with `create-render-app`, `$state()` comes with it in `stateAndUtilSetup.js`file (In utilities folder). If you're using a `script` tag, you need to create `stateAndUtilSetup.js` file in your project and add the code from [stateAndUtilSetup.js]() to it.
+
+### Create state with `setState` utility.
+
+Create the state for your entire app in the root or topmost component in your project and access it with `$state()` anywhere in the project.
+
+import { Tabs } from 'nextra/components'
+
+<Tabs items={['cdn', 'module']}>
+  <Tabs.Tab> 
+    * Add `stateAndUtilSetup.js` to the `HTML` page where you use `setState`.
+
+    ```html copy
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body>
+        <div id="root"></div>
+
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render@0.0.0/dist/umd/bundle.min.js"></script>
+      </body> -->
+      <script src="stateAndUtilSetup.js"></script>
+    </html>
+    ```
+
+    * Use `setState` to make your application state accessible everywhere in the project.
+
+    ```js filename="App.js" copy
+      const App = () => {
+
+        let state = {
+          songs,
+          shuffle: false,
+          repeat: false,
+          selected: false,
+          volume: 0,
+          playingInterval: null,
+        }
+
+        setState(state);
+      }
+    ```
+  </Tabs.Tab> 
+  <Tabs.Tab> 
+
+    ```js filename="App.js" copy
+      import {setState} from './stateAndUtilSetup'
+
+      const App = () => {
+
+        let state = {
+          songs,
+          shuffle: false,
+          repeat: false,
+          selected: false,
+          volume: 0,
+          playingInterval: null,
+        }
+
+        setState(state);
+      }
+    ```
+  </Tabs.Tab> 
+</Tabs>
+
+Now, you can use `$state()` anywhere in your project.
+</Steps>
+
+### Use $state() utility
+
+`$state()` takes no argument and it returns state object. It is immutable and can be used in various way.
+
+* Get state
+
+```js copy
+const state = $state()
+```
+
+`state` now contains everything in the state of your application.
+
+* Get a property of the state
+
+```js copy
+const users = $state().users
+const posts = $state().posts
+```
+
+### Reset the state
+
+You can't reset the state with `setState`. It will throw an error. To do so, you must use `$resetState`.
+
+* Add `stateAndUtilSetup.js` to the `HTML` page where you use `resetState`.
+
+```js filename="Profile.js" copy
+const Profile = () => {
+  const updatedUserInfo = {
+    name: 'John',
+    age: 78
+  }
+
+  const state = $state();
+  state.user = updatedUserInfo;
+  resetState(state);
+}
+```
+
+### Update a property of the state
+
+```js copy
+ const state = $state();
+ state.update('shuffle', true);
+```
+
+In the code snippet above, we update `shuffle` (a property of the state) to true.
+
+### Subscribe to a property of the state
+
+You can subscribe a component, function, class or module to a property of the state so that they are notified whenever the the propery changes.
+
+```js copy
+export const Shuffle = (status=false) => {
+  const state = $state();
+  state.subscribe(Shuffle, "status");
+  `;
+}
+```
+
+Now, we have subscribed `Shuffle` to `status` (a property of the state) so that `Shuffle` will be called whenver `status` changes. 
+
+That is how to use the `$state()` utility in $render.
+
+<Callout type="info" emoji="ℹ️">
+  Note: 80% of time, you don't need `$state()` accessor. Instead, pass data, including function utilities, as props. When the data is needed by almost every part of the project, then you can use `$state()` accessor. 
+</Callout>
+
+
+
+

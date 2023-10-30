@@ -1,3 +1,166 @@
 # APIs
 
-This is the about page! 
+APIs is a set of customizable utilities to send and fetch data. `APIs` takes two arguments, `domain name` which is compulsory and `application headers` which is optional. 
+
+### Setup APIs utility
+
+import { Steps } from 'nextra/components'
+
+<Steps>
+### Create `apiSetup.js`
+
+If you scaffold your application with `create-render-app`, `apiSetup.js` file is located in utilities folder. If you're using a `script` tag, you need to create `apiSetup.js` file in your project and add the code from [apiSetup.js]() to it.
+
+### Set default domain to send or fetch data
+
+In the code you copied from `apiSetup.js`, add your default domain name.
+
+```js copy
+export function APIs(baseUrl, headers){
+  const __baseUrl = baseUrl || 'https://jsonplaceholder.typicode.com';
+  // The rest of the code
+}
+```
+
+### Set default application headers
+
+Add your default application headers to the object.
+
+```js copy
+export function APIs(baseUrl, headers){
+  //const __baseUrl = baseUrl || 'https://your-default-domain.com';
+  const __headers = headers || {
+    'Content-Type': 'application/json'};
+  // The rest of the code
+}
+```
+
+### Use APIs.
+
+import { Tabs } from 'nextra/components'
+
+<Tabs items={['cdn', 'module']}>
+  <Tabs.Tab> 
+    * Add `apiSetup.js` to the `HTML` page where you want to fetch and send data.
+
+    ```html copy
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body>
+        <div id="root"></div>
+
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render@0.0.0/dist/umd/bundle.min.js"></script>
+      </body> -->
+      <script src="apiSetup.js"></script>
+    </html>
+    ```
+
+    * Use APIs with default domain and headers
+
+    ```js filename="appFunctions.js" copy
+        const todo = APIs.get("todos/1");
+        const todos = APIs.get("todos");
+
+        // posting todo
+        APIs.post('posts', todo); 
+      }
+    ```
+
+    * Use APIs by overrinding default domain and HTTP headers
+
+    ```js filename="appFunctions.js" copy
+        const baseUrl = 'https://jsonplaceholder.typicode.com';
+
+        const headers = {
+            'Content-Type': 'application/json'
+            Cache-Control: max-age=0
+        }
+
+        const api = APIs(baseUrl, headers);
+        const todo = api.get('todos/1');
+        const todos = api.get('todos');
+
+        //posting todos
+
+        api.post('todos', todos); 
+      }
+    ```
+
+     * Fetch data from multiple servers
+    ```js filename="appFunctions.js" copy
+        const typicodeServer = "https://jsonplaceholder.typicode.com";
+        const facebookServer = "https://facebook.com";
+
+        const typicode = APIs(typicodeServer);
+        const facebook = APIs(facebookServer);
+
+      // Fetch from typicode
+      const todo = typicode.get('todos/1');
+      const todos = typicode.get('todos');
+
+      // Fetch from facebook
+      const feed = facebook.get('feeds/1');
+      const feeds = facebook.get('feeds');
+    ```
+  </Tabs.Tab> 
+  <Tabs.Tab> 
+
+    ```js filename="App.js" copy
+      import {APIs} from './apiSetup'
+    ```
+
+       * Use APIs with default domain and headers
+
+    ```js filename="appFunctions.js" copy
+        const todo = APIs.get("todos/1");
+        const todos = APIs.get("todos");
+
+        APIs.post('todos', todo); 
+      }
+    ```
+
+    * Use APIs by overrinding default domain and HTTP headers
+
+    ```js filename="appFunctions.js" copy
+        const baseUrl = https://jsonplaceholder.typicode.com;
+
+        const headers = {
+            'Content-Type': 'application/json'
+            Cache-Control: max-age=0
+        }
+
+        const api = APIs(baseUrl, headers);
+        const todo = api.get('todo/1');
+        const todos = api.get('todos');
+
+        //posting todos
+
+        api.post('api/endpoint', todos); 
+      }
+    ```
+
+    * Fetch data from multiple servers
+    ```js filename="appFunctions.js" copy
+        const typicodeServer = "https://jsonplaceholder.typicode.com";
+        const facebookServer = "https://facebook.com";
+
+        const typicode = APIs(typicodeServer);
+        const facebook = APIs(facebookServer);
+
+      // Fetch from typicode
+      const todo = typicode.get('todos/1');
+      const todos = typicode.get('todos');
+
+      // Fetch from facebook
+      const feed = facebook.get('feeds/1');
+      const feeds = facebook.get('feeds');
+    ```
+  </Tabs.Tab> 
+</Tabs>
+
+Now, you can use `APIs` anywhere in your project to fetch and post data.
+</Steps>

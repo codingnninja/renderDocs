@@ -1,3 +1,258 @@
-# Hypermedia
+# Hypermedia (htmx)
 
-This is the about page! 
+Hypermedia is a set of customizable utilities to fetch components in form of `HTML` string from the `backend`. `htmx` takes two arguments, `domain name` which is compulsory and `http headers` which is optional. 
+
+### Setup htmx utility
+
+import { Steps } from 'nextra/components'
+import { Callout } from 'nextra/components'
+
+<Steps>
+### Create `hypermedia.js`
+
+If you scaffold your application with `create-render-app`, `hypermedia.js` file is located in utilities folder. If you're using a `script` tag, you need to create `hypermedia.js` file in your project and add the code from [hypermedia.js]() to it.
+
+### Set default domain to fetch components
+
+In the code you copied from `hypermedia.js`, add your default domain name.
+
+```js copy
+export function htmx(baseUrl, headers){
+  const __baseUrl = baseUrl || 'https://jsonplaceholder.typicode.com';
+  // The rest of the code
+}
+```
+
+### Set default application headers
+
+Add your default application headers to the object.
+
+```js copy
+export function APIs(baseUrl, headers){
+  //const __baseUrl = baseUrl || 'https://your-default-domain.com';
+  const __headers = headers || {'Content-Type': 'text/html'};
+  // The rest of the code
+}
+```
+
+### Use htmx.
+
+import { Tabs } from 'nextra/components'
+
+<Tabs items={['cdn', 'module']}>
+  <Tabs.Tab> 
+    * Add `hypermedia.js` to the `HTML` page where you want to fetch components.
+
+    ```html copy
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body>
+        <div id="root"></div>
+
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render@0.0.0/dist/umd/bundle.min.js"></script>
+      </body> -->
+      <script src="hypermedia.js"></script>
+    </html>
+    ```
+    
+    * Use htmx with default domain and headers and make htmx available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
+
+    ```js filename="appFunctions.js" copy
+        const $view = htmx.view;
+        $register($view);
+    ```
+
+    * Use `$view` in event handlers.
+
+    ```js filename="appFunctions.js" copy
+        <button onClick="$view('todos/1')">
+          get todo
+        </button>
+      }
+    ```
+
+    <Callout type="info" emoji="ℹ️">
+    Note: The response from the request must be a string of `HTML` if not, an error will be thrown.
+    </Callout>
+
+    * Use `htmx` without or by overrinding default domain and `HTTP headers` and make `htmx` available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
+
+    <Callout type="info" emoji="ℹ️">
+    Note: You only need to `$register` view once in the topmost component or part of your application.
+    </Callout>
+
+    ```js filename="appFunctions.js" copy
+        const baseUrl = "https://jsonplaceholder.typicode.com";
+        const headers = {
+            'Content-Type': 'text/html'
+            Cache-Control: max-age=0
+        }
+        const $view = htmx(baseUrl, headers).view;
+        $register($view);
+    ```
+
+    * Ignoring `htmx` optional parameter (headers)
+
+    ```js filename="appFunctions.js" copy
+        const baseUrl = "https://jsonplaceholder.typicode.com";
+
+        const $view = htmx(baseUrl).view;
+        $register($view);
+    ```
+    
+    * Use `$view` in event handlers.
+
+    ```js filename="todo.html" copy
+        <button onClick="$view('todos/1')">
+          get todo
+        </button>
+      }
+    ```
+    * Use `$view` in event handlers with data (browser-rendered).
+
+     ```js filename="todos.html" copy
+        <button onClick="$view('todos', '{$stringify(data)}')">
+          get todos
+        </button>
+      }
+    ```
+
+    * Use `$view` in event handlers with data (server rendered).
+
+     ```js filename="todos.html" copy
+        <button onClick="$view('todos', data))">
+          get todos
+        </button>
+      }
+    ```
+
+  * Get components from multiple servers
+  ```js copy
+        const serverUrl1 = "https://jsonplaceholder.typicode.com";
+        const serverUrl2 = "https://facebook.com";
+
+        const $viewFromServerOne = htmx(serverUrl1).view;
+        const $viewFromServerTwo = htmx(serverUrl2).view;
+        $register($viewFromServerOne, $viewFromServerOne);
+
+      //use viewFromServerOne
+
+      <button onClick="$viewFromServerOne('todos/1')">
+        get todos
+      </button>
+
+      //use viewFromServerTwo
+
+      <button onClick="$viewFromServerTwo('feeds/1')">
+        get todos
+      </button>
+  ```
+
+  </Tabs.Tab> 
+  <Tabs.Tab> 
+
+    ```js filename="appFunctions.js" copy
+      import {htmx} from './hypermedia'
+    ```
+
+    * Use htmx with default domain and headers and make `htmx` available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
+
+    ```js filename="appFunctions.js" copy
+        const $view = htmx.view;
+        $register($view);
+    ```
+
+    * Use `$view` in event handlers.
+
+    ```js filename="appFunctions.js" copy
+        <button onClick="$view('todos/1')">
+          get todo
+        </button>
+      }
+    ```
+
+    <Callout type="info" emoji="ℹ️">
+    Note: The response from the request must be a string of `HTML` if not, an error will be thrown.
+    </Callout>
+
+    * Use `htmx` by overrinding default domain and `HTTP headers` and make htmx available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
+
+    <Callout type="info" emoji="ℹ️">
+    Note: You only need to `$register` view once in the topmost component or part of your application.
+    </Callout>
+
+    ```js filename="appFunctions.js" copy
+        const baseUrl = "https://jsonplaceholder.typicode.com";
+        const headers = {
+            'Content-Type': 'text/html'
+            Cache-Control: max-age=0
+        }
+        const $view = htmx(baseUrl, headers).view;
+        $register($view);
+    ```
+
+    * Ignoring `htmx` optional parameter (headers)
+
+    ```js filename="appFunctions.js" copy
+        const baseUrl = "https://jsonplaceholder.typicode.com";
+
+        const $view = htmx(baseUrl).view;
+        $register($view);
+    ```
+
+    * Use `$view` in event handlers.
+
+    ```js filename="appFunctions.js" copy
+        <button onClick="$view('todos/1')">
+          get todo
+        </button>
+      }
+    ```
+
+    * Use `$view` in event handlers with a data (browser-rendered).
+
+     ```js filename="appFunctions.js" copy
+        <button onClick="$view('todos', '{$stringify(data)}')">
+          get todos
+        </button>
+      }
+    ```
+
+    * Use `$view` in event handlers with a data (server rendered).
+
+     ```js filename="appFunctions.js" copy
+        <button onClick="$view('todos', data))">
+          get todos
+        </button>
+      }
+    ```
+      * Get components from multiple servers
+    ```js filename="appFunctions.js" copy
+        const serverUrl1 = "https://jsonplaceholder.typicode.com";
+        const serverUrl2 = "https://facebook.com";
+
+        const $viewFromServerOne = htmx(serverUrl1).view;
+        const $viewFromServerTwo = htmx(serverUrl2).view;
+        $register($viewFromServerOne, $viewFromServerOne);
+
+      //use viewFromServerOne
+
+      <button onClick="$viewFromServerOne('todos/1')">
+        get todos
+      </button>
+
+      //use viewFromServerTwo
+
+      <button onClick="$viewFromServerTwo('feeds/1')">
+        get todos
+      </button>
+    ```
+  </Tabs.Tab> 
+</Tabs>
+
+Now, you can get component from single and multiple servers.
+</Steps>

@@ -1,6 +1,6 @@
 # Hydration
 
-Hydration is the process of attaching event handlers to html on the client side but in $render, `Hydration` works by default in the browser so there is no need to take some extra time to `re-compile`. What you write is what you get in the browser.
+Hydration is the process of attaching event handlers to `html` on the client side but in $render, `Hydration` works by default in the browser so there is no need to take some extra time to `re-compile`. What you write is what you get in the browser.
 
 When you wrap a function with template literals while passing it to an event handler in a component, it is hydrated into the component.
 
@@ -43,4 +43,4 @@ You don't need to wrap a function in template literals `${toggle}` while working
 
 ### Avoiding hydrations from template literals
 
-Maybe you don't like how hydrated functions look in the browser, you can avoid hydration by passing `functions` to components as `props` or use the utilities method `$use()` provided by $render to use `function` utilities in the components.
+Maybe you don't like how hydrated functions look in the browser, you can avoid hydration by passing `functions` to components as `props` or use the `$utils()` method provided by $render to use `function` utilities in the components.

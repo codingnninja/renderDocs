@@ -67,3 +67,17 @@ Going with `const` and `$select` by default helps to avoid unnecessary bugs.
 `$select` is a unified utility to access the DOM.
 
 ### Handling self-selection in a component
+
+Self-selection is when a componet selects an element within it. Self-selection will return undefined in the first rendering because the elements selected won't be available in the DOM.
+
+So, it is necessary to check if the selected elements are available before using them.
+
+```js copy
+const Volume = (song) => {
+  const audio = $select('#audio');
+  if(audio){
+    // use audio here
+  }
+  // the rest of the component
+}
+```

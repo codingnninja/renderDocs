@@ -1,6 +1,6 @@
 # Props
 
-Props are the data pass to a component as its attributes.
+Props are the data/properties passed to a component as its attributes.
 
 ```js {2} copy
 return `
@@ -8,5 +8,54 @@ return `
 `;
 ```
 
-The song passed to the `Audio` component as one of its attributes is a prop. 
+`song` is a prop because it is passed to the `Audio` component as one of its attributes. 
 
+### Passing down and using a prop
+
+* Passing down a prop
+
+```js {2} copy
+return `
+  <Audio song=${stringify(song)} />
+`;
+```
+
+* Using a prop
+
+```js copy
+  function Audio(song){
+    return`
+      <div id="audio">
+        <audio src="${song.url}"></audio>
+      </div>
+    `;
+  }
+```
+
+### Passing down and using props
+
+* Passing down props
+
+```js {3,4} copy
+return `
+  <Audio 
+    song="${stringify(song)}"
+    autoplaySong=${autoplaySong}
+  />
+`;
+```
+
+* Using props
+
+```js {4,5} copy
+  function Audio({song, autoplaySong}){
+    return`
+      <div id="audio">
+        <audio src="${song.url}"></audio>
+        <button onClick="autoplaySong(song)">Play song</button>
+      </div>
+    `;
+  }
+```
+
+Yeah! That is how to pass down and use single and multiple props in `$render`.
