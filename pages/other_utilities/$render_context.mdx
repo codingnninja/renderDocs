@@ -1,0 +1,41 @@
+# $render Context
+
+$render context is used to create and access the specific global state of a component. $render context is used to make the data of a component accessible to other components without passing down as `props`.
+
+$render context is all about using `createContext()` and `useContext()`. It is very similar to React context but with some twists.
+
+To use `createContext()` or `useContext()`, you need to setup the `$state()` utility. Click [$state()](https://render-docs.vercel.app/other_utilities/$state()) to set it up.
+
+Once you setup the `$state()` utility, then you can use `createContext()` and `useContext()`.
+
+### createContext()
+
+It creates a specific global state for a component. The specific global state is only accessible by the component it is created for.
+
+```js copy
+createContext(Component, data);
+```
+
+`createContext()` takes two parameters, `Component` and `data`. In short, the data is attached to the context of the `Component` provided.
+
+```js copy
+createContext(Player, appState);
+```
+
+Now, the `appState` can be consumed through the `Player` component by using `useContext()`.
+
+### useContext()
+
+It is used to consumed data from the global context of a component.
+
+```js copy
+useContext(Component);
+```
+
+`useContext()` takes a component from which data will be consumed. If no context data has been created for the component provided, `undefined` will be returned.
+
+```js copy
+const appState = useContext(Player);
+```
+
+Now, we are able to get the data attached to the global context of the `Player` component.

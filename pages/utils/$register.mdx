@@ -39,7 +39,10 @@ const Shuffle = (status=false) => {
         <article>
           <Shuffle />
         </article>
-        <button onClick="transformMedia(${media})">transform media</button>
+        <button 
+          onClick="transformMedia(${stringify(media)})">
+          transform media
+        </button>
       </div>
     `;
   }

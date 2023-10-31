@@ -4,7 +4,7 @@ Props are the data/properties passed to a component as its attributes.
 
 ```js {2} copy
 return `
-  <Audio id="audio" song="${stringify(song)}" />
+  <Audio id="audio" song=${stringify(song)} />
 `;
 ```
 
@@ -39,7 +39,7 @@ return `
 ```js {3,4} copy
 return `
   <Audio 
-    song="${stringify(song)}"
+    song=${stringify(song)}
     autoplaySong=${autoplaySong}
   />
 `;
