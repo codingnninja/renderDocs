@@ -2,47 +2,165 @@
 
 Props are the data/properties passed to a component as its attributes.
 
-```js {2} copy
-return `
-  <Audio id="audio" song=${stringify(song)} />
-`;
+```html {2} copy
+//dynamically
+<Audio id="audio" song=${stringify(song)} />
+  // statically
+<Audio song="{title:'go', url:'song.mp3'}" />
 ```
 
 `song` is a prop because it is passed to the `Audio` component as one of its attributes. 
 
 ### Passing down and using a prop
 
-* Passing down a prop
+* Passing down an object as a prop
 
-```js {2} copy
-return `
-  <Audio song=${stringify(song)} />
-`;
+```html {2} copy
+//dynamically 
+<Audio song=${stringify(song)} />
+  // statically
+<Audio song="{title:'go', url:'song.mp3'}" />
 ```
 
-* Using a prop
+##### Passing down non-object data type as a prop
+
+To pass down non-object data type, we will add `double quotes("")` and won't use `stringify` as it is only meant for an object or an array of objects. 
+
+* number
+```html {1} copy
+//dynamically
+<Counter count="${count}" />
+// statically
+<Counter count="1" />
+```
+
+* funciton
+
+```html {1} copy
+//dynamically
+<Post editPost="${editPost}" post=${stringify(post)} />
+//statically
+<Post editPost="function editPost(){ alert('editing'); }" />
+```
+
+* string
+
+```html {1} copy
+//dynamically
+<Post title="${title}" />
+  // or dynamically from an object
+<Post title="${post.title}" /> 
+```
+
+* string
+
+```html {1} copy
+//dynamically 
+<Shuffle shuffle="${song.shuffle}" />
+//statically
+<Shuffle shuffle="${song.shuffle}" />
+```
+ 
+##### Using a prop
+
+All props, except functions, are consumed the same way.
+
+* object
 
 ```js copy
   function Audio(song){
     return`
-      <div id="audio">
+      <div id="audio" class="${song.show ? 'show' : 'hide'}">
         <audio src="${song.url}"></audio>
       </div>
     `;
   }
 ```
 
+* number
+
+```js copy
+  const Counter = (count = 0) => {
+    return `
+      <div id="counter">
+        <button 
+          onClick="$render(Counter, ${count + 1})" 
+          style="height:30px; width:100px">Count is ${count}
+        </button>
+      </div>
+    `;
+  };
+```
+
+* A funciton call as an event value
+
+Any function calls as a reponse to a DOM event like `hover`, `onclick` and so on must use the `$trigger` utility.
+
+```js copy
+  const Post = ({post, editPost}) => {
+    return `
+      <div id="post">
+        <h1>${post.title}</h1>
+        <button 
+          onClick="$trigger(${editPost}, null, ${stringify(post)})" 
+          style="height:30px; width:100px"> Edit posst
+        </button>
+      </div>
+    `;
+  };
+```
+
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  Note: calling a function using template literals `${editPost(post)}` will execute the function before the target event. Or using it like `${editPost} without `$trigger` will do nothing.
+</Callout>
+
+* Function calls in component body.
+You can call a funciton as in JavaScript within the body of a component. In this case, you don't need the `$trigger` utility.
+
+```js copy
+  const LatestPost = (getLatestPost) => {
+    const latestPost = getLatestPost();
+    return `
+      <div id="post">
+        <h1>${latestPost.title}</h1>
+        <p>
+          ${$latestPost.body}
+        </p>
+      </div>
+    `;
+  };
+```
+
+* boolean
+
+```js copy
+const Repeat = (status=false) => {
+  return `
+    <div id="repeat">
+      <button class="btn-icon toggle">
+        <span 
+          class="material-symbols-rounded ${status ? 'active' : ''}"
+          onclick="$render(Repeat, ${!status})"
+        >
+        ${status ? 'repeat_one' : 'repeat'}
+        </span>
+      </button>
+    </div>
+  `;
+}
+```
+
 ### Passing down and using props
 
 * Passing down props
 
-```js {3,4} copy
-return `
-  <Audio 
-    song=${stringify(song)}
-    autoplaySong=${autoplaySong}
-  />
-`;
+```html {3,4} copy
+<Audio 
+  song=${stringify(song)}
+  autoplaySong=${autoplaySong}
+/>
 ```
 
 * Using props
@@ -52,10 +170,9 @@ return `
     return`
       <div id="audio">
         <audio src="${song.url}"></audio>
-        <button onClick="autoplaySong(song)">Play song</button>
+        <button onClick="$trigger(${autoplaySong}, '${stringify(song)}'">Play song</button>
       </div>
     `;
   }
 ```
-
 Yeah! That is how to pass down and use single and multiple props in `$render`.

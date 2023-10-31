@@ -62,7 +62,7 @@ import { Tabs } from 'nextra/components'
     * Use htmx with default domain and headers and make htmx available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
 
     ```js filename="appFunctions.js" copy
-        const $view = htmx.view;
+        const $view = htmx.$view;
         $register($view);
     ```
 
@@ -91,7 +91,7 @@ import { Tabs } from 'nextra/components'
             'Content-Type': 'text/html'
             Cache-Control: max-age=0
         }
-        const $view = htmx(baseUrl, headers).view;
+        const $view = htmx(baseUrl, headers).$view;
         $register($view);
     ```
 
@@ -100,7 +100,7 @@ import { Tabs } from 'nextra/components'
     ```js filename="appFunctions.js" copy
         const baseUrl = "https://jsonplaceholder.typicode.com";
 
-        const $view = htmx(baseUrl).view;
+        const $view = htmx(baseUrl).$view;
         $register($view);
     ```
     
@@ -135,8 +135,8 @@ import { Tabs } from 'nextra/components'
         const serverUrl1 = "https://jsonplaceholder.typicode.com";
         const serverUrl2 = "https://facebook.com";
 
-        const $viewFromServerOne = htmx(serverUrl1).view;
-        const $viewFromServerTwo = htmx(serverUrl2).view;
+        const $viewFromServerOne = htmx(serverUrl1).$view;
+        const $viewFromServerTwo = htmx(serverUrl2).$view;
         $register($viewFromServerOne, $viewFromServerOne);
 
       //use viewFromServerOne
@@ -162,7 +162,7 @@ import { Tabs } from 'nextra/components'
     * Use htmx with default domain and headers and make `htmx` available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
 
     ```js filename="appFunctions.js" copy
-        const $view = htmx.view;
+        const $view = htmx.$view;
         $register($view);
     ```
 
@@ -191,7 +191,7 @@ import { Tabs } from 'nextra/components'
             'Content-Type': 'text/html'
             Cache-Control: max-age=0
         }
-        const $view = htmx(baseUrl, headers).view;
+        const $view = htmx(baseUrl, headers).$view;
         $register($view);
     ```
 
@@ -200,7 +200,7 @@ import { Tabs } from 'nextra/components'
     ```js filename="appFunctions.js" copy
         const baseUrl = "https://jsonplaceholder.typicode.com";
 
-        const $view = htmx(baseUrl).view;
+        const $view = htmx(baseUrl).$view;
         $register($view);
     ```
 
@@ -235,8 +235,8 @@ import { Tabs } from 'nextra/components'
         const serverUrl1 = "https://jsonplaceholder.typicode.com";
         const serverUrl2 = "https://facebook.com";
 
-        const $viewFromServerOne = htmx(serverUrl1).view;
-        const $viewFromServerTwo = htmx(serverUrl2).view;
+        const $viewFromServerOne = htmx(serverUrl1).$view;
+        const $viewFromServerTwo = htmx(serverUrl2).$view;
         $register($viewFromServerOne, $viewFromServerOne);
 
       //use viewFromServerOne
