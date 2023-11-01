@@ -38,7 +38,7 @@ To pass down non-object data type, we will add `double quotes("")` and won't use
 
 ```html {1} copy
 //dynamically
-<Post editPost="${editPost}" post=${stringify(post)} />
+<Post editPost="${editPost}"/>
 //statically
 <Post editPost="function editPost(){ alert('editing'); }" />
 ```
@@ -50,15 +50,19 @@ To pass down non-object data type, we will add `double quotes("")` and won't use
 <Post title="${title}" />
   // or dynamically from an object
 <Post title="${post.title}" /> 
+// statically
+<Post title="How to get things done" /> 
 ```
 
-* string
+* Boolean
 
 ```html {1} copy
 //dynamically 
-<Shuffle shuffle="${song.shuffle}" />
+<Shuffle shuffle="${status}" />
+//or dynamically from an object
+<Shuffle shuffle="${song.status}" />
 //statically
-<Shuffle shuffle="${song.shuffle}" />
+<Shuffle shuffle="true" />
 ```
  
 ##### Using a prop
@@ -113,10 +117,11 @@ Any function calls as a reponse to a DOM event like `hover`, `onclick` and so on
 import { Callout } from 'nextra/components'
 
 <Callout type="info" emoji="ℹ️">
-  Note: calling a function using template literals `${editPost(post)}` will execute the function before the target event. Or using it like `${editPost} without `$trigger` will do nothing.
+  Note: calling a function using template literals `${editPost(post)}` will execute the function before the target event. Or using it like `${editPost}` without `$trigger` will do nothing.
 </Callout>
 
 * Function calls in component body.
+
 You can call a funciton as in JavaScript within the body of a component. In this case, you don't need the `$trigger` utility.
 
 ```js copy
@@ -132,6 +137,10 @@ You can call a funciton as in JavaScript within the body of a component. In this
     `;
   };
 ```
+
+<Callout type="info" emoji="ℹ️">
+  Note: Whenever you have to use a string containing `>` `<` and the like, you need to serialize the string.
+</Callout>
 
 * boolean
 

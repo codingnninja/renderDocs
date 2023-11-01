@@ -2,6 +2,18 @@
 
 `$state()` is an accessor to get the state of your application anywhere in your app. It is a customizable utility to handle the global state of your applications.
 
+### When you don't need a global state?
+
+You don't need a global state if the changes in components only affect the said components or when you can easily pass down whatever changed as `props` to the affected components.
+
+### When do you need a global state?
+
+You most likely need a global state when many of your components depend on 
+actions performed by one another. When your components have `one-to-many` or `many-to-many` relationships, you probably need a global state so that changes from components are centralized.
+
+* When a changes in component, affects many other components, it will be hard to be calling each of the components one by one, instead; the changed properties can be centralized so that all affected components access it or it fires all subscribed components.
+
+
 import { Callout } from 'nextra/components'
 
 <Callout type="info" emoji="ℹ️">
@@ -141,9 +153,22 @@ You can subscribe a component, function, class or module to a property of the st
 export const Shuffle = (status=false) => {
   const state = $state();
   state.subscribe(Shuffle, "status");
-  `;
+  //the rest of the code
 }
 ```
+
+### Subscribe multiple components to a property of the state.
+
+```js copy
+export const Shuffle = (status=false) => {
+  const state = $state();
+  state.subscribe([Shuffle, Repeat], "status");
+  state.subscribe([Songs, Player], song);
+  //the rest of the code
+}
+```
+
+It is recommended you subscribe components to some properties of the global state in a parent component.
 
 Now, we have subscribed `Shuffle` to `status` (a property of the state) so that `Shuffle` will be called whenver `status` changes. 
 
