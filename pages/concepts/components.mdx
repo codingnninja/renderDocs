@@ -50,7 +50,86 @@ const List = (list) => {
 
 ## Component parameter
 
-A component `function` can only take zero or one `parameter` of any `data type` that can have a default value.
+A component can only take zero or one `parameter` of any `data type` that can have a default value.
+
+##### A parameter without a default value
+
+Any component with a parameter that has no default value expects an argument whenever it is used as JSX `<Component songs=${stringify(songs)} />`. This is mostly used when you want a component to depend on its parent Component for `props`.
+
+* Unit state
+
+```js filename="counter.js" {5} copy
+const Counter = (count) => {
+  return `
+    <div id="counter">
+      <button 
+        onClick="$render(Counter, ${count + 1})" 
+        style="height:30px; width:100px">Count is ${count}
+      </button>
+    </div>
+  `;
+};
+```
+
+* Composite state
+
+Without destructuring
+
+```js
+function Profile(item) {
+  return `
+    <div 
+      id="${item.id}" 
+      person="${item.person}"> 
+      ${item.children.a} 
+    </div>
+  `;
+}
+```
+
+With destructuring
+
+```js
+function Profile({ id=0, person={}, children={a:'yes'} }) {
+  return `
+    <div 
+      id="${id}" 
+      person="${stringify(person)}"> 
+      ${children.a} 
+    </div>
+  `;
+}
+```
+
+##### How to render components that has no default value.
+
+```html copy
+  <!-- As HTML tag -->
+  <Counter count="0" /> 
+  <Profile user=${stringify(user)} />
+```
+`or`
+
+```js copy
+  //In a component/function body
+  $render(Counter, 0); 
+  $render(Profile, user);
+
+  // As an event handler
+  onclick="$render(Counter, 0)"
+  onhover="$render(Profile, '${stringify(user)}')";
+```
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  Note: You can't $render a component in its own body but you can use it has its own event handler.
+</Callout>
+
+##### A parameters with a default value
+
+Any component with a parameter that has a default value doesn't expect an argument whenever it is used. This is mostly used when you want a component to be self containted or independent.
+
+* Unit state
 
 ```js filename="counter.js" {5} copy
 const Counter = (count = 0) => {
@@ -65,7 +144,9 @@ const Counter = (count = 0) => {
 };
 ```
 
-`Or `
+* Component state
+
+Without destructuring
 
 ```js filename="profile.js" {1} copy
   function Profile(item = { id: 1, person: {}, children: { a: "yes" } }) {
@@ -74,6 +155,20 @@ const Counter = (count = 0) => {
         id="${item.id}" 
         person="${item.person}"> 
         ${item.children.a} 
+      </div>
+    `;
+  }
+```
+
+With destructuring
+
+```js filename="profile.js" {1} copy
+  function Profile({ id = 1, person = {}, children = { a: "yes" } } = {}) {
+    return `
+      <div 
+        id="${id}" 
+        person=${stingify(person)}> 
+        ${children.a} 
       </div>
     `;
   }

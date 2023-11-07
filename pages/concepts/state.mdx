@@ -64,6 +64,14 @@ const MovingDot = (coordinates = { x:0, y:3 }) {
 
 `or`
 
+```js {1}
+const MovingDot = ({ x=0, y=3 }) {
+ // code
+}
+```
+
+`or`
+
 ```js {2}
 const MovingDot = (props) {
   const coordinates = props || { x:0, y:3 };

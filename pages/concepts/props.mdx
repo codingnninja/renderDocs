@@ -1,11 +1,11 @@
 # Props
 
-Props are the data/properties passed to a component as its attributes.
+Props are the data or properties passed down to a JSX component as its attributes. Props is always an object so you have to use `stringify()` whenever you're passing down `props` as a whole.
 
 ```html {2} copy
-//dynamically
+<!-- dynamically -->
 <Audio id="audio" song=${stringify(song)} />
-  // statically
+<!-- statically or server-rendered -->
 <Audio song="{title:'go', url:'song.mp3'}" />
 ```
 
@@ -16,9 +16,9 @@ Props are the data/properties passed to a component as its attributes.
 * Passing down an object as a prop
 
 ```html {2} copy
-//dynamically 
+<!-- dynamically  -->
 <Audio song=${stringify(song)} />
-  // statically
+<!-- statically -->
 <Audio song="{title:'go', url:'song.mp3'}" />
 ```
 
@@ -28,40 +28,40 @@ To pass down non-object data type, we will add `double quotes("")` and won't use
 
 * number
 ```html {1} copy
-//dynamically
+<!-- dynamically -->
 <Counter count="${count}" />
-// statically
+<!-- statically -->
 <Counter count="1" />
 ```
 
 * funciton
 
 ```html {1} copy
-//dynamically
+<!-- dynamically -->
 <Post editPost="${editPost}"/>
-//statically
+<!-- statically -->
 <Post editPost="function editPost(){ alert('editing'); }" />
 ```
 
 * string
 
 ```html {1} copy
-//dynamically
+<!-- dynamically -->
 <Post title="${title}" />
-  // or dynamically from an object
+<!-- Or dynamically from an object -->
 <Post title="${post.title}" /> 
-// statically
+<!-- statically -->
 <Post title="How to get things done" /> 
 ```
 
 * Boolean
 
-```html {1} copy
-//dynamically 
+```html {1} copy 
+<!-- dynamically -->
 <Shuffle shuffle="${status}" />
-//or dynamically from an object
+<!-- or dynamically from an object -->
 <Shuffle shuffle="${song.status}" />
-//statically
+<!-- statically -->
 <Shuffle shuffle="true" />
 ```
  
@@ -185,3 +185,4 @@ const Repeat = (status=false) => {
   }
 ```
 Yeah! That is how to pass down and use single and multiple props in `$render`.
+
