@@ -23,29 +23,34 @@ const App = () => {
 * A component with props.
 
 ```js filename="list.js" {2} copy
+function List(list) {
+  const listItems = list.map((person) => `<li>${person.name}</li>`);
+  return `<ul id="list">${listItems}</ul>`;
+}
+//usage
 const list = [{
   name: 'Alice',
   age: 24
 }];
 
-function List(list) {
-  const listItems = list.map((person) => `<li>${person.name}</li>`);
-  return `<ul id="list">${listItems}</ul>`;
-}
+<List list=${stringify(list)} />
 ```
 
 `Or`
 
 ```js filename="list.js" {2} copy
-const persons = [{
-  name: 'Alice',
-  age: 24
-}]
 
 const List = (list) => {
   const listItems = list.map((person) => `<li>${person.name}</li>`);
   return `<ul id="list">${listItems}</ul>`;
 }
+//usage
+const list = [{
+  name: 'Alice',
+  age: 24
+}];
+
+<List list=${stringify(list)} />
 ```
 
 ## Component parameter

@@ -4,6 +4,44 @@ $select is a unified utility to access the DOM. It accesses single and multiple 
 
 It's like `import` for DOM.
 
+### Quick demo
+
+```html copy
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="audio"></div>
+      <div class="post"></div>
+      <div class="post"></div>
+      <div class="post"></div>
+      <div class="post"></div>
+      <div class="comment"></div>
+      <div class="comment"></div>
+      <div class="comment"></div>
+      <div class="comment"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render@0.0.0/dist/umd/bundle.min.js"></script>
+    <script>
+      const { $select } = render;
+      const [audio, posts, comments] = $select(".audio, .post, .comment");
+      console.log(audio);
+      posts.map((post) => console.log(post));
+      comments.map((comment) => console.log(comment));
+    </script>
+  </body>
+</html>
+```
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  Note: always make sure selectors are separated by commas and destructured variables should correspond to the selectors.
+</Callout>
+
 ### Select single element
 
 ```js copy
