@@ -78,7 +78,7 @@ You might need to perform some operations you don't want to tie to a component, 
 <Callout type="info" emoji="ℹ️">
   Note: passing a function with template literals adds the function to the DOM. For the function to work, it must end with a `simi-colon(;)` and not contain any comments.
 
-  This issue can be avoided by passing utilities as props or use them via the global utility accessor `$use()`. [Learn more](https://render-docs.verce.co/other_utilities/$utils()).
+  This issue can be avoided by passing utilities as props or use them via the global utility accessor `$use()`. [Learn more](https://render-docs.vercel.app/other_utilities/$utils()).
 </Callout>
 
 ```js {8} copy
@@ -101,7 +101,7 @@ const Shuffle = (status=false) => {
 $render(Shuffle);
 ```
 
-`$trigger` is another utility $render provides. [Click to learn more](https://render-docs.verce.co/utils/$trigger).
+`$trigger` is another utility $render provides. [Click to learn more](https://render-docs.vercel.app/utils/$trigger).
 
 If you have rendered `Shuffle`, you need to remove `$render(Shuffle);` at the end of the code snippets above.
 
