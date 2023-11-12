@@ -1,12 +1,12 @@
 # $trigger utility
 
-`$trigger` is used to call an action when user interact with certain elements. That means you can use it to trigger an action when an interaction like click, hover and so on happens.
+`$trigger` is used to call an function when user interact with certain elements. That means you can use it to trigger an action when an interaction like click, hover and so on happens.
 
-```js
+```js copy
 $trigger(function, selectors, data?optional)
 ```
 
-It takes three parameters -- `function utility`, `element selector(s)` and `data`.
+It takes three parameters -- `a function utility`, `element selector(s)` and `data`.
 
 `function` is a compulsory argument while `selectors` could be replaced with `null` when you don't need to select any elements but `data` is optional.You must always put the function argument in template literals for hydration.
 
@@ -77,6 +77,7 @@ function Previous(song) {
 }
 ```
 
+
 ### $trigger an action with both selectors and data parameters
 
 ```js copy
@@ -91,6 +92,12 @@ function Next(song) {
   `;
 }
 ```
+
+import { Callout } from 'nextra/components'
+
+<Callout type="info" emoji="ℹ️">
+  Note: always ensure you use `stringify` with single or double quotes.
+</Callout>
 
 ### Why not use JavaScript functions only?
 

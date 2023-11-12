@@ -12,9 +12,9 @@ That means you need to `$purify` a `stringified` data passed to a function.
   return `
     <div id="main">
       <article>
-          <Player />
-          <Playlist />
-          <Overlay />
+        <Player />
+        <Playlist />
+        <Overlay />
       </article>
       <button onClick="transformMedia(stringify(${media}))">transform media</button>
     </div>
@@ -45,6 +45,6 @@ function Calculator(result) {
 }
 ```
 
-You don't need to purify operands passed to `add` utility as it passes through an internal utility `$trigger`.
+You don't need to `$purify` operands passed to `add` utility as it passes through an internal utility (`$trigger`).
 
 In short, you only use `$purify` when you `stringify` data and the data doesn't pass through `$render`. 

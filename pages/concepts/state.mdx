@@ -39,15 +39,6 @@ const Count = (count = 0) {
 }
 ```
 
-`or`
-
-```js copy {1}
-const Count = (prop) {
-  const count = prop || 0;
-
-}
-```
-
 You can declare your state in unit like above.
 
 It suitable when you only need to pass one property around for re-rendering.
@@ -65,17 +56,8 @@ const MovingDot = (coordinates = { x:0, y:3 }) {
 `or`
 
 ```js {1}
-const MovingDot = ({ x=0, y=3 }) {
+const MovingDot = ({ x=0, y=3 } = {}) {
  // code
-}
-```
-
-`or`
-
-```js {2}
-const MovingDot = (props) {
-  const coordinates = props || { x:0, y:3 };
-   // code
 }
 ```
 
@@ -85,7 +67,7 @@ Composite state is suitable when you have to pass many properties around for re-
 
 A global state is the current or latest data of an app that is accessible to all parts of the app. A global state can be used from anywhere in an application. 
 
-In `$render`, you can use `$state()` in any component to access the state of you application. [Learn more](https://render-docs.verce.co/other_utilities/$state()).
+In `$render`, you can use `$state()` in any component to access the state of you application. [Learn more](https://render-docs.vercel.app/other_utilities/$state()).
 
 import { Callout } from 'nextra/components'
 
@@ -97,8 +79,8 @@ import { Callout } from 'nextra/components'
 
 It is state of a component stored in a global state but only accessible by the component and any component that subscribes to the context. 
 
-In $render, you can use `$createContext() and $useContext()` in any component to create and access `a global component context`. [Learn more](https://render-docs.verce.co/other_utilities/create_Context()) 
+In $render, you can use `$createContext() and $useContext()` in any component to create and access `a global component context`. [Learn more](https://render-docs.vercel.app/other_utilities/$render_context/#createContext()) 
 
 In short, the global component context is like the React context but with a twist.
 
-State is created within a component or global scope and it can be passed down to children components as `props` in short for properties.
+State is created within a component or global scope and it can be passed down to children components as `props`, in short, for properties.

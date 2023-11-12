@@ -95,7 +95,7 @@ function Profile(item) {
 With destructuring
 
 ```js
-function Profile({ id=0, person={}, children={a:'yes'} }) {
+function Profile({ id, person, children }) {
   return `
     <div 
       id="${id}" 
@@ -180,5 +180,7 @@ With destructuring
 ```
 
 Basically, a `$render` component is still a JavaScript function that has an initial capital letter.
+
+A common error to avoid in $render or React while crafting components in $render or React is Prop Drilling. Learn more from [How to avoid Prop Drilling in React or $render](https://www.freecodecamp.org/news/avoid-prop-drilling-in-react/)
 
 

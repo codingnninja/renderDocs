@@ -39,10 +39,11 @@ useContext(Component);
 `useContext()` takes a component from which data will be consumed. If no context data has been created for the component provided, `undefined` will be returned.
 
 ```js copy
+//Player is a component
 const appState = useContext(Player);
 ```
 
-* Making components independent of the context they consume
+* Make components independent of the context they consume
 
 You can make components independent of the context they consume by making them optionally dependent on the context.
 

@@ -7,7 +7,7 @@ import { Callout } from 'nextra/components'
 <Callout type="info" emoji="ℹ️">
   Note: $utils() is only useful when you are using esModules. You don't need it in a `script` tag (functions are accessible by default). 
 
-  Even in esModules, you only need if you don't want to pass functions as props.
+  Even in esModules, you only need it if you don't want to pass functions as props.
 </Callout>
 
 
@@ -108,6 +108,7 @@ const utils = $utils()
 ```js copy
 const toggle = $utils().toggle
 const show = $utils().show
+$utils().toggle();
 ```
 
 ### Reset or update $utils()

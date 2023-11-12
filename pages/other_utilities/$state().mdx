@@ -9,9 +9,9 @@ You don't need a global state if the changes in components only affect the said 
 ### When do you need a global state?
 
 You most likely need a global state when many of your components depend on 
-actions performed by one another. When your components have `one-to-many` or `many-to-many` relationships, you probably need a global state so that changes from components are centralized.
+actions performed by one another. When your components have `one-to-many` or `many-to-many` relationships, you probably need a global state so that changes from components are centralized and it side effects are distributed.
 
-* When a changes in component, affects many other components, it will be hard to be calling each of the components one by one, instead; the changed properties can be centralized so that all affected components access it or it fires all subscribed components.
+* When changes in component affect many other components, it will be hard to be calling each of the components one by one, instead; the changed properties can be centralized so that all affected components can access it or it can fires all subscribed components.
 
 
 import { Callout } from 'nextra/components'
