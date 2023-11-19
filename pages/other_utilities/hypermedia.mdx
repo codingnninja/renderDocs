@@ -10,7 +10,7 @@ import { Callout } from 'nextra/components'
 <Steps>
 ### Create `hypermedia.js`
 
-If you scaffold your application with `create-render-app`, `hypermedia.js` file is located in utilities folder. If you're using a `script` tag, you need to create `hypermedia.js` file in your project and add the code from [hypermedia.js]() to it.
+If you scaffold your application with `create-render-app`, `hypermedia.js` file is located in utilities folder. If you're using a `script` tag, you need to create `hypermedia.js` file in your project and add the code from [hypermedia.js](https://github.com/codingnninja/create-render-app/tree/main/src/utils/hypermedia.js) to it.
 
 ### Set default domain to fetch components
 
@@ -225,7 +225,7 @@ import { Tabs } from 'nextra/components'
     * Use `$view` in event handlers with a data (server rendered).
 
      ```js filename="appFunctions.js" copy
-        <button onClick="$view('todos', data))">
+        <button onClick="$view('todos', {name: 'Ayobami'})">
           get todos
         </button>
       }
@@ -256,3 +256,5 @@ import { Tabs } from 'nextra/components'
 
 Now, you can get component from single and multiple servers.
 </Steps>
+
+[Click to check]() the common errors in using `Hypermedia`.

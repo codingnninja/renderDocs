@@ -7,6 +7,7 @@ Just like in a computer, $render components are detachable and pluggable to anot
 * A component without props.
 
 ```js filename="app.js" copy
+// using an arrow function
 const App = () => {
   return `
     <div id="main">
@@ -18,11 +19,14 @@ const App = () => {
     </div>
   `;
 }
+
+<App />
 ```
 
 * A component with props.
 
 ```js filename="list.js" {2} copy
+// using an native function
 function List(list) {
   const listItems = list.map((person) => `<li>${person.name}</li>`);
   return `<ul id="list">${listItems}</ul>`;
@@ -39,7 +43,7 @@ const list = [{
 `Or`
 
 ```js filename="list.js" {2} copy
-
+// using an arrow function
 const List = (list) => {
   const listItems = list.map((person) => `<li>${person.name}</li>`);
   return `<ul id="list">${listItems}</ul>`;
@@ -106,7 +110,7 @@ function Profile({ id, person, children }) {
 }
 ```
 
-##### How to render components that has no default value.
+##### Render components that have no default value.
 
 ```html copy
   <!-- As HTML tag -->
@@ -181,6 +185,6 @@ With destructuring
 
 Basically, a `$render` component is still a JavaScript function that has an initial capital letter.
 
-A common error to avoid in $render or React while crafting components in $render or React is Prop Drilling. Learn more from [How to avoid Prop Drilling in React or $render](https://www.freecodecamp.org/news/avoid-prop-drilling-in-react/)
+A common error to avoid in $render or React while crafting components is Prop Drilling. Learn more from [How to avoid Prop Drilling in React or $render](https://www.freecodecamp.org/news/avoid-prop-drilling-in-react/)
 
 

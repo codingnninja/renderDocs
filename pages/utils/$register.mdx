@@ -13,7 +13,7 @@ import { Callout } from 'nextra/components'
 You only need to $register a component where it is imported and used (not where it is created).
 
 ```js copy
-const Shuffle = (status=false) => {
+export const Shuffle = (status=false) => {
   return `
     <div id="shuffle">
       <button class="btn-icon toggle">
@@ -58,7 +58,7 @@ You see! We `$register` Shuffle in the `App` component where it is used. You hav
 
 ### $register a function
 
-Functions and variables from a module are not accessible to DOM events like `onclick` by default. You can make them accessible by using `$register` on them.
+Functions from a module are not accessible to DOM events like `onclick` by default. You can make them accessible by using `$register` on them.
 
 ```js filename="appFunctions.js" copy
   import {htmx} from './hypermedia'
@@ -66,3 +66,5 @@ Functions and variables from a module are not accessible to DOM events like `onc
   const $view = htmx.view;
   $register($view);
 ```
+
+[Click to check]() the common errors in using `$register`.

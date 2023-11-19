@@ -1,20 +1,18 @@
 # $render utility
 
-$render adds JSX to the DOM with the `#root id` or a target `id` of a component. It makes using JSX directly in the browser without virtual DOM possible.
+$render adds JSX to the DOM with the `#root id` or a target `id` of a component. It makes using JSX directly in the browser without a virtual DOM possible.
 
 ### Rendering
 
-It is adding JSX to the DOM that happens in the browser without any interaction from users.
+It is adding JSX to the DOM that happens in the browser without any user interactions with the DOM elements.
 
 * Rendering without props
 
 ```js {1} copy
-  function Profile(item = { id: 1, person: {}, children: { a: "yes" } }) {
+  function Profile() {
     return `
-      <div 
-        id="${item.id}" 
-        person=${stringify(item.person)}> 
-        ${item.children.a} 
+      <div id="1"> 
+        Ayobami Ogundiran
       </div>
     `;
   }
@@ -71,38 +69,85 @@ const Shuffle = (status=false) => {
 }
 $render(Shuffle);
 ```
+
+In the code above, you would notice we use `$render(Shuffle, ${!status})` to make the `Shuffle` itself re-render whenever the shuffle button is clicked. 
+
+import { Tabs } from 'nextra/components'
+
 * Re-rendering from a controller
 
 You might need to perform some operations you don't want to tie to a component, then you can create reusable utilities.
 
-<Callout type="info" emoji="ℹ️">
-  Note: passing a function with template literals adds the function to the DOM. For the function to work, it must end with a `simi-colon(;)` and not contain any comments.
+<Tabs items={['script', 'module']}>
+  <Tabs.Tab> 
+    * Add `apiSetup.js` to the `HTML` page where you want to fetch and send data.
 
-  This issue can be avoided by passing utilities as props or use them via the global utility accessor `$utils()`. [Learn more](https://render-docs.vercel.app/other_utilities/$utils()).
-</Callout>
+    ```js {8} copy
+    function toggle (status) {
+      $render(Shuffle, !status);
+    }
 
-```js {8} copy
-function toggle (status) {
-  $render(Shuffle, !status);
-}
+    const Shuffle = (status=false) => {
+      return `
+        <div id="shuffle">
+          <button class="btn-icon toggle">
+            <span 
+              class="material-symbols-rounded ${status ? 'active': ''}"
+              onclick="toggle(status)"
+            >shuffle ${status} </span>
+          </button>
+        </div>
+      `;
+    }
+    $render(Shuffle);
+    ```
+   
+  </Tabs.Tab> 
+  <Tabs.Tab> 
 
-const Shuffle = (status=false) => {
-  return `
-    <div id="shuffle">
-      <button class="btn-icon toggle">
-        <span 
-          class="material-symbols-rounded ${status ? 'active': ''}"
-          onclick="$trigger(${toggle}, null, ${status})"
-        >shuffle ${status} </span>
-      </button>
-    </div>
-  `;
-}
-$render(Shuffle);
-```
+  * Declare a component
 
-`$trigger` is another utility $render provides. [Click to learn more](https://render-docs.vercel.app/utils/$trigger).
+   ```js {8} copy
+    function toggle (status) {
+      $render(Shuffle, !status);
+    }
+
+    export const Shuffle = (status=false) => {
+      return `
+        <div id="shuffle">
+          <button class="btn-icon toggle">
+            <span 
+              class="material-symbols-rounded ${status ? 'active': ''}"
+              onclick="$trigger(${toggle}, null, ${status})"
+            >shuffle ${status} </span>
+          </button>
+        </div>
+      `;
+    }
+    ```
+   * Use the component
+
+   ```js copy
+   import {Shuffle} from './Shuffle';
+
+   $register(Shuffle);
+   $render(Shuffle);
+   ```
+  </Tabs.Tab> 
+</Tabs>
 
 If you have rendered `Shuffle`, you need to remove `$render(Shuffle);` at the end of the code snippets above.
 
-`$render` is a built-in utility to render and re-render JSX without virtual DOM.
+`$render` is a built-in utility to render and re-render JSX without a virtual DOM.
+
+<Callout type="info" emoji="ℹ️">
+  Note: passing a function with template literals adds the function to the DOM. For the function to work, it must end with a `simi-colon(;)` and not contain any comments.
+
+  This issue can be avoided by configuring your code editor to insert `;` at the end of every line of code or by using utilities via the global utility accessor `$utils()`. [Learn more](https://render-docs.vercel.app/other_utilities/$utils()).
+</Callout>
+
+To configure VSCode to insert `;` at the end of every line of code, press `Ctrl+,` or `Command+,` to go to setting in VScode. Search "JavaScript semicolon" and under `JavaScript>format:semicolon`, choose `insert`.
+
+`$trigger` is another built-in utility $render provides. [Learn more](https://render-docs.vercel.app/utils/$trigger).
+
+[Click to check]() the common errors in using `$render`.

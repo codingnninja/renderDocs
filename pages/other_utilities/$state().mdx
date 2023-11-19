@@ -11,7 +11,7 @@ You don't need a global state if the changes in components only affect the said 
 You most likely need a global state when many of your components depend on 
 actions performed by one another. When your components have `one-to-many` or `many-to-many` relationships, you probably need a global state so that changes from components are centralized and it side effects are distributed.
 
-* When changes in component affect many other components, it will be hard to be calling each of the components one by one, instead; the changed properties can be centralized so that all affected components can access it or it can fires all subscribed components.
+* When changes in a component affect many other components that are not its direct children, it will be hard to be calling each of the components one by one, instead; the changed properties can be centralized so that all affected components can access it or it can fire all subscribed components.
 
 
 import { Callout } from 'nextra/components'
@@ -27,7 +27,7 @@ import { Steps } from 'nextra/components'
 <Steps>
 ### Create `stateAndUtilSetup.js`
 
-If you scaffold your application with `create-render-app`, `$state()` comes with it in `stateAndUtilSetup.js`file (In utilities folder). If you're using a `script` tag, you need to create `stateAndUtilSetup.js` file in your project and add the code from [stateAndUtilSetup.js]() to it.
+If you scaffold your application with `create-render-app`, `$state()` comes with it in `stateAndUtilSetup.js`file (In utilities folder). If you're using a `script` tag, you need to create `stateAndUtilSetup.js` file in your project and add the code from [stateAndUtilSetup.js](https://github.com/codingnninja/create-render-app/tree/main/src/utils/stateAndUtilSetup.js) to it.
 
 ### Create state with `setState` utility.
 
@@ -175,9 +175,7 @@ Now, we have subscribed `Shuffle` to `status` (a property of the state) so that 
 That is how to use the `$state()` utility in $render.
 
 <Callout type="info" emoji="ℹ️">
-  Note: 80% of time, you don't need `$state()` accessor. Instead, pass data, including function utilities, as props. When the data is needed by almost every part of the project, then you can use `$state()` accessor. 
+  Note: 80% of time, you don't need `$state()` accessor. Instead, pass data, including function utilities, as props. When many components depend on one another, then you can use `$state()` accessor. 
 </Callout>
 
-
-
-
+[Click to check]() the common errors in using `$state()`.

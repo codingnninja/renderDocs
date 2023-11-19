@@ -1,6 +1,6 @@
 # $select utility
 
-$select is a unified utility to access the DOM. It accesses single and multiple elements with JavaScript. $select returns an `array` of found elements but returns `undefined` for any element not found. It supports all `CSS selectors`.
+$select is a unified utility to access the DOM. It accesses single and multiple elements with JavaScript. $select returns an element or an `array` of found elements but returns `undefined` for any element not found. It supports all `CSS selectors`.
 
 It's like `import` for DOM.
 
@@ -25,7 +25,7 @@ It's like `import` for DOM.
       <div class="comment"></div>
       <div class="comment"></div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render@0.0.3/dist/umd/bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render/dist/umd/bundle.min.js"></script>
     <script>
       const { $select } = render;
       const [audio, posts, comments] = $select(".audio, .post, .comment");
@@ -112,11 +112,13 @@ So, it is necessary to check if the selected elements are available whenever a c
 
 ```js copy
 const Volume = (song) => {
-  const audio = $select('#audio');
-  if(audio){
-    // use audio here
+  const volumeBtn = $select('#volumeBtn');
+  if(volumeBtn){
+    // use volumeBtn here
   }
   // the rest of the component without using audio
 }
 
 ```
+
+[Click to check]() the common errors in using `$select`.
