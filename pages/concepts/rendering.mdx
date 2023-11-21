@@ -98,51 +98,19 @@ An harmonious rendering happens when all nested functions and children component
 > Harmonious rendering when the parent component takes no prop.
 
 ```js copy
-function Item({ name, isPacked }) {
-  return (
-    <li className="item">
-      {isPacked ? (
-        <del>
-          {name + ' ✔'}
-        </del>
-      ) : (
-        name
-      )}
-    </li>
-  );
-}
-
-export default function PackingList() {
-  return (
-    <section>
-      <h1>Sally Ride's Packing List</h1>
-      <ul>
-        <Item 
-          isPacked={true} 
-          name="Space suit" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Helmet with a golden leaf" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Photo of Tam" 
-        />
-      </ul>
-    </section>
-  );
-}
-
+const Profile = memoize(({user}) => {
+  const modifyName = memoize((user) => `Mr. ${user.name}`);
+  const giveBadge = () => 'Badge';
+  return`
+   <div>
+      ${modifyName(user)}
+      ${giveBadge()}
+   </div> 
+  `
+});
 ```
 
-> Harmonious rendering when the parent component takes props.
-
-```js copy
-
-```
-
-Note that you can memoize an harmonious component without worrying about any issue.
+The component above is harmonious as the functions within it either take its props as an argument or take no argument. You can memoize an harmonious component or any of its content without worrying about any issue.
 
 ### Disjointed rendering
 
@@ -151,6 +119,16 @@ A disjointed rendering is the opposite of Harmonious Rendering as it only happen
 Note that memoizeing a disjointed component may lead to unexpected issues if care is not taken.
 
 ```js copy
-
+const Profile = ({user}) => {
+  const toggle = (status=false) => !status;
+  const giveBadge = () => 'Badge';
+  return`
+   <div>
+      ${toggle()}
+      ${giveBadge()}
+   </div> 
+  `
+};
 ```
 
+Memoizeing a disjointed component requires you to be extra careful to avoid unexpect challenges.

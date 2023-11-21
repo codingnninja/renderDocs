@@ -80,9 +80,7 @@ const Counter = (count) => {
 };
 ```
 
-* Composite state
-
-Without destructuring
+* Composite state without destructuring
 
 ```js
 function Profile(item) {
@@ -96,7 +94,7 @@ function Profile(item) {
 }
 ```
 
-With destructuring
+> Composite state With destructuring
 
 ```js
 function Profile({ id, person, children }) {
@@ -153,9 +151,7 @@ const Counter = (count = 0) => {
 };
 ```
 
-* Component state
-
-Without destructuring
+* Component state without destructuring
 
 ```js filename="profile.js" {1} copy
   function Profile(item = { id: 1, person: {}, children: { a: "yes" } }) {
@@ -169,7 +165,7 @@ Without destructuring
   }
 ```
 
-With destructuring
+> Component state with destructuring
 
 ```js filename="profile.js" {1} copy
   function Profile({ id = 1, person = {}, children = { a: "yes" } } = {}) {
@@ -185,6 +181,6 @@ With destructuring
 
 Basically, a `$render` component is still a JavaScript function that has an initial capital letter.
 
-A common error to avoid in $render or React while crafting components is Prop Drilling. Learn more from [How to avoid Prop Drilling in React or $render](https://www.freecodecamp.org/news/avoid-prop-drilling-in-react/)
+A common error to avoid in `$render` or React while crafting components is Prop Drilling. Learn more from [How to avoid Prop Drilling in React or $render](https://www.freecodecamp.org/news/avoid-prop-drilling-in-react/)
 
 

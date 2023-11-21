@@ -51,4 +51,10 @@ You can make components independent of the context they consume by making them o
 const componentState = props ? props : useContext(Player);
 ```
 
+`Or`
+
+```js copy
+const componentState = props ?? useContext(Player);
+```
+
 Now, we are able to get the data attached to the global context of the `Player` component and even make the components that consume the context independent of it.
