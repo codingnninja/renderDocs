@@ -62,49 +62,44 @@ import { Tabs } from 'nextra/components'
     * Use APIs with default domain and headers
 
     ```js filename="appFunctions.js" copy
-        const todo = APIs.get("todos/1");
-        const todos = APIs.get("todos");
-
+        const response = await APIs().get("todos");
+        const todos = await response.json();
+        console.log(todos)
         // posting todo
         APIs.post('posts', todo); 
-      }
     ```
 
     * Use APIs by overrinding default domain and HTTP headers
 
     ```js filename="appFunctions.js" copy
-        const baseUrl = 'https://jsonplaceholder.typicode.com';
+        const baseUrl = "https://randomuser.me";
 
         const headers = {
             'Content-Type': 'application/json'
             Cache-Control: max-age=0
         }
 
-        const api = APIs(baseUrl, headers);
-        const todo = api.get('todos/1');
-        const todos = api.get('todos');
-
-        //posting todos
-
-        api.post('todos', todos); 
-      }
+        const rando = await APIs(baseUrl, headers).get("api/?results=30");
+        const users = rando.json();
     ```
 
      * Fetch data from multiple servers
     ```js filename="appFunctions.js" copy
-        const typicodeServer = "https://jsonplaceholder.typicode.com";
-        const facebookServer = "https://facebook.com";
+      const rando = "https://randomuser.me";
 
-        const typicode = APIs(typicodeServer);
-        const facebook = APIs(facebookServer);
+      const typicode = APIs();
+      const rando = APIs(rando);
 
       // Fetch from typicode
-      const todo = typicode.get('todos/1');
-      const todos = typicode.get('todos');
+      const typicodeTodosResponse = await typicode.get('todos');
+      const todos = await typicodeResponse.json();
 
-      // Fetch from facebook
-      const feed = facebook.get('feeds/1');
-      const feeds = facebook.get('feeds');
+      const typicodeTodoResponse = await typicode.get('todos/1');
+      const todo = await typicodeTodoResponse.json();
+
+      // Fetch from ramdo
+      const randoUsersResponse = await rando.get('feeds');
+      const users = await randoUsersResponse.json();
     ```
   </Tabs.Tab> 
   <Tabs.Tab> 
@@ -116,53 +111,62 @@ import { Tabs } from 'nextra/components'
        * Use APIs with default domain and headers
 
     ```js filename="appFunctions.js" copy
-        const todo = APIs.get("todos/1");
-        const todos = APIs.get("todos");
-
-        APIs.post('todos', todo); 
-      }
+        const response = await APIs().get("todos");
+        const todos = await response.json();
+        console.log(todos)
+        // posting todo
+        APIs.post('posts', todo); 
     ```
 
     * Use APIs by overrinding default domain and HTTP headers
 
     ```js filename="appFunctions.js" copy
-        const baseUrl = https://jsonplaceholder.typicode.com;
+        const baseUrl = "https://randomuser.me";
 
         const headers = {
             'Content-Type': 'application/json'
             Cache-Control: max-age=0
         }
 
-        const api = APIs(baseUrl, headers);
-        const todo = api.get('todo/1');
-        const todos = api.get('todos');
-
-        //posting todos
-
-        api.post('api/endpoint', todos); 
+        const rando = await APIs(baseUrl, headers).get("api/?results=30");
+        const users = rando.json();
       }
     ```
 
     * Fetch data from multiple servers
     ```js filename="appFunctions.js" copy
-        const typicodeServer = "https://jsonplaceholder.typicode.com";
-        const facebookServer = "https://facebook.com";
+      const rando = "https://randomuser.me";
 
-        const typicode = APIs(typicodeServer);
-        const facebook = APIs(facebookServer);
+      const typicode = APIs();
+      const rando = APIs(rando);
 
       // Fetch from typicode
-      const todo = typicode.get('todos/1');
-      const todos = typicode.get('todos');
+      const typicodeTodosResponse = await typicode.get('todos');
+      const todos = await typicodeResponse.json();
 
-      // Fetch from facebook
-      const feed = facebook.get('feeds/1');
-      const feeds = facebook.get('feeds');
+      const typicodeTodoResponse = await typicode.get('todos/1');
+      const todo = await typicodeTodoResponse.json();
+
+      // Fetch from ramdo
+      const randoUsersResponse = await rando.get('feeds');
+      const users = await randoUsersResponse.json();
     ```
   </Tabs.Tab> 
 </Tabs>
 
 Now, you can use `APIs` anywhere in your project to fetch and post data.
 </Steps>
+
+* Playground 
+
+Multiple server requests in action.
+
+<iframe src="https://codesandbox.io/embed/t74tcw?view=Editor+%2B+Preview&module=%2Findex.html"
+     width="100%" 
+     height="500px"
+     title="user-list"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 
 [Click to check]() the common errors in using `APIs`.

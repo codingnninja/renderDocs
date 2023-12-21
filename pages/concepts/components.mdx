@@ -27,9 +27,14 @@ const App = () => {
 
 ```js filename="list.js" {2} copy
 // using an native function
-function List(list) {
-  const listItems = list.map((person) => `<li>${person.name}</li>`);
-  return `<ul id="list">${listItems}</ul>`;
+function List(items) {
+  return `
+    <div id="list">
+      <ul>
+        ${items.map((item) => `<li>${item.title}</li>`)}
+      </ul>
+    </div>
+  `;
 }
 //usage
 const list = [{
@@ -44,9 +49,14 @@ const list = [{
 
 ```js filename="list.js" {2} copy
 // using an arrow function
-const List = (list) => {
-  const listItems = list.map((person) => `<li>${person.name}</li>`);
-  return `<ul id="list">${listItems}</ul>`;
+const List = (items) => {
+  return `
+    <div id="list">
+      <ul>
+        ${items.map((item) => `<li>${item.title}</li>`)}
+      </ul>
+    </div>
+  `;
 }
 //usage
 const list = [{
@@ -56,6 +66,16 @@ const list = [{
 
 <List list=${stringify(list)} />
 ```
+
+## Component placeholders
+
+These are strings of `HTML tags` that represent components that will be needed later.
+
+```html
+<div id="modal"></div>
+```
+
+Whenever you want to use modal in $render, you need to add a component placeholder to your page so that you can add or replace its content later.
 
 ## Component parameter
 
@@ -80,7 +100,9 @@ const Counter = (count) => {
 };
 ```
 
-* Composite state without destructuring
+* Composite state 
+
+> props without destructuring
 
 ```js
 function Profile(item) {
@@ -94,7 +116,7 @@ function Profile(item) {
 }
 ```
 
-> Composite state With destructuring
+> props with destructuring
 
 ```js
 function Profile({ id, person, children }) {
@@ -151,8 +173,9 @@ const Counter = (count = 0) => {
 };
 ```
 
-* Component state without destructuring
+* Composite state
 
+> default value without destructuring
 ```js filename="profile.js" {1} copy
   function Profile(item = { id: 1, person: {}, children: { a: "yes" } }) {
     return `
@@ -165,7 +188,7 @@ const Counter = (count = 0) => {
   }
 ```
 
-> Component state with destructuring
+> default value with destructuring
 
 ```js filename="profile.js" {1} copy
   function Profile({ id = 1, person = {}, children = { a: "yes" } } = {}) {

@@ -4,6 +4,10 @@ $select is a unified utility to access the DOM. It accesses single and multiple 
 
 It's like `import` for DOM.
 
+```js copy
+$select('selector(s)');
+```
+
 ### Quick demo
 
 ```html copy
@@ -36,6 +40,18 @@ It's like `import` for DOM.
   </body>
 </html>
 ```
+
+* Playground
+
+   <iframe src="https://codesandbox.io/embed/zktczg?view=Editor+%2B+Preview&module=%2Findex.html&expanddevtools=1"
+     width="100%" 
+     height="500px" 
+     border="0"
+     title="select"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
 import { Callout } from 'nextra/components'
 
 <Callout type="info" emoji="ℹ️">
@@ -72,6 +88,18 @@ posts.map(post => console.log(post));
 comments.map(comment => console.log(comment));
 ```
 
+### Selection with attributes
+
+```js copy
+const [logo, article] = $select('a[class~="logo"], [article]');
+```
+
+### Selection with psuedo-selectors
+
+```js copy
+const [activeSong, queuedSongs] = $select('.audio:is(.playing), .audio:not(.playing)');
+```
+
 ### A more complex selection
 
 ```js copy
@@ -81,8 +109,9 @@ const [
     audios,
     features
     articles,
-    navs
-] = $select('posts, comments, .audios, #features>.feature, [article], .nav');
+    navs,
+    queuedSongs
+] = $select('posts, comments, .audios, #features>.feature, [article], .nav, .audio:not(.playing)');
 ```
 
 ### Handling variable re-assignment with $select

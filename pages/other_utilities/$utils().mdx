@@ -26,7 +26,20 @@ Create utilities for your entire app in a file and you can access them with `$ut
 
 import { Tabs } from 'nextra/components'
 
-<Tabs items={['cdn', 'module']}>
+<Tabs items={['module', 'cdn']}>
+  <Tabs.Tab> 
+
+    ```js filename="App.js" copy
+      import {setUtils} from './stateAndUtilSetup'
+      import {utils} from './appUtils'
+
+      const App = () => {
+        setUtils(utils);
+
+        //rest of the code
+      }
+    ```
+  </Tabs.Tab> 
   <Tabs.Tab> 
     * Add `stateAndUtilSetup.js` to the `HTML` page where you use `setUtils`. [Example]()
 
@@ -67,18 +80,6 @@ import { Tabs } from 'nextra/components'
     * Then set your utilities with `setUtils` at the root or topmost component to be accessible anywhere in your application.
     
     ```js filename="App.js" copy
-      const App = () => {
-        setUtils(utils);
-
-        //rest of the code
-      }
-    ```
-  </Tabs.Tab> 
-  <Tabs.Tab> 
-
-    ```js filename="App.js" copy
-      import {setUtils} from './stateAndUtilSetup'
-
       const App = () => {
         setUtils(utils);
 

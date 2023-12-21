@@ -2,6 +2,10 @@
 
 `$purify` converts stringified data back to its original version. In JavaScript, any object passed via template literals will turn to `[Object object]`. To avoid that from happening, `$render` introduces `stringify` to convert data to a string before passing it to template literals.
 
+```js copy
+$purify(stringifiedData);
+```
+
 By default, `$render` uses `$purify` internally on any props passed to a component or any utilities so you don't need to do it yourself. The only time you need `$purify` is when you don't use `$render` component and internal utilities.
 
 That means you need to `$purify` a `stringified` data passed to a function.

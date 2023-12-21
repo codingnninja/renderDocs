@@ -1,0 +1,63 @@
+# Modal Components
+
+Modals show components by stacking or popping them up above the main page. There are different needs for modal so it has to be flexible.
+
+```js filename="App" copy
+const App = (props) => {
+  return `
+    <button 
+      onClick="$render(LoginModal,'${stringify(items)}')">
+      Show login
+    </button>
+    <button 
+      onClick="$render(PriceModal,'${stringify(items)}')">
+      Show price
+    </button>
+    //component placeholder
+    <div id="modal"></div>
+  `;
+}
+```
+
+### PriceModal component
+
+```js filename="PriceModal" copy
+const PriceModal = (props) => {
+  return`
+    <div id="modal">
+      <div class="price">
+        This modal contains prices of good and services.
+      </div>
+    </div>
+  `;
+}
+```
+
+### LoginModal component
+
+```js filename="LoginModal" copy
+const LoginModal = (props) => {
+  return`
+    <div id="modal">
+      <div class="login">
+        This is a login modal.
+      </div>
+    </div>
+  `;
+}
+```
+
+### Render App
+
+```js copy
+  $render(App);
+  ```
+  * Playground
+
+<iframe src="https://codesandbox.io/embed/qnmlc4?view=Editor+%2B+Preview&module=%2Findex.html"
+     width="100%" 
+     height="500px"
+     title="modal system in render"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>

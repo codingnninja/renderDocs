@@ -35,7 +35,27 @@ Create the state for your entire app in the root or topmost component in your pr
 
 import { Tabs } from 'nextra/components'
 
-<Tabs items={['cdn', 'module']}>
+<Tabs items={['module', 'cdn']}>
+  <Tabs.Tab> 
+
+    ```js filename="App.js" copy
+      import {setState} from './stateAndUtilSetup'
+
+      const App = () => {
+
+        let state = {
+          songs,
+          shuffle: false,
+          repeat: false,
+          selected: false,
+          volume: 0,
+          playingInterval: null,
+        }
+
+        setState(state);
+      }
+    ```
+  </Tabs.Tab> 
   <Tabs.Tab> 
     * Add `stateAndUtilSetup.js` to the `HTML` page where you use `setState`.
 
@@ -58,26 +78,6 @@ import { Tabs } from 'nextra/components'
     * Use `setState` to make your application state accessible everywhere in the project.
 
     ```js filename="App.js" copy
-      const App = () => {
-
-        let state = {
-          songs,
-          shuffle: false,
-          repeat: false,
-          selected: false,
-          volume: 0,
-          playingInterval: null,
-        }
-
-        setState(state);
-      }
-    ```
-  </Tabs.Tab> 
-  <Tabs.Tab> 
-
-    ```js filename="App.js" copy
-      import {setState} from './stateAndUtilSetup'
-
       const App = () => {
 
         let state = {

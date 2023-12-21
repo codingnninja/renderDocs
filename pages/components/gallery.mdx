@@ -48,22 +48,20 @@ import { Tabs } from 'nextra/components'
   ### Pagination component
   ```js filename="Pagination.js" copy
     const Pagination = (images) => {
-      const listItems = images.map((image, key) => {
-        return `
-        <div id="${key}">
-          <img
-            onClick="$render(CurrentImage, '${stringify(image)}')"
-            class="h-auto max-w-full rounded-lg" 
-            src="${image.src}"
-          />
-        </div>
-      `});
-      
       return `
         <div 
           class="grid grid-cols-5 gap-4"
           id="pagination">
-          ${listItems}
+          ${images.map((image, key) => {
+            return `
+            <div id="${key}">
+              <img
+                onClick="$render(CurrentImage, '${stringify(image)}')"
+                class="h-auto max-w-full rounded-lg" 
+                src="${image.src}"
+              />
+            </div>
+          `})}
         </div>
       `;
     }
@@ -71,8 +69,7 @@ import { Tabs } from 'nextra/components'
 
   ### CurrentImage component
   ```js filename="CurrentImage.js" copy
-    const CurrentImage = (image) => {
-      const {src, alt} = image;
+    const CurrentImage = ({src, alt}) => {
       return `
         <div id="current-image">
           <img class="h-auto max-w-full rounded-lg" src="${src}" alt="${alt}">
@@ -86,4 +83,13 @@ import { Tabs } from 'nextra/components'
   ```js copy
   $render(Gallery);
   ```
+  * Playground
+
+  <iframe src="https://codesandbox.io/embed/yq4sn7?view=Editor+%2B+Preview&module=%2Findex.html"
+     width="100%" 
+     height="500px"
+     title="wandering-voice-yq4sn7"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
 </Steps>

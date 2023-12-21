@@ -2,6 +2,10 @@
 
 $render adds JSX to the DOM with the `#root id` or a target `id` of a component. It makes using JSX directly in the browser without a virtual DOM possible.
 
+```js copy
+$render(Component, props?optional);
+```
+
 ### Rendering
 
 It is adding JSX to the DOM that happens in the browser without any user interactions with the DOM elements.
@@ -50,7 +54,7 @@ It is adding JSX to the DOM that happens in the browser when you interact with t
 import { Callout } from 'nextra/components'
 
 <Callout type="info" emoji="ℹ️">
-  Note: A re-renderable component must have a wrapping `div` or `section` tag with an `ID`.
+  Note: A re-renderable component must have a wrapping `div` tag with an `ID`.
 </Callout>
 
 * Self-contained re-rendering
@@ -80,7 +84,7 @@ You might need to perform some operations you don't want to tie to a component, 
 
 <Tabs items={['script', 'module']}>
   <Tabs.Tab> 
-    * Add `apiSetup.js` to the `HTML` page where you want to fetch and send data.
+    * Add `appUtils.js` to the `HTML` page.
 
     ```js {8} copy
     function toggle (status) {
@@ -146,8 +150,9 @@ If you have rendered `Shuffle`, you need to remove `$render(Shuffle);` at the en
   This issue can be avoided by configuring your code editor to insert `;` at the end of every line of code or by using utilities via the global utility accessor `$utils()`. [Learn more](https://render-docs.vercel.app/other_utilities/$utils()).
 </Callout>
 
-To configure VSCode to insert `;` at the end of every line of code, press `Ctrl+,` or `Command+,` to go to setting in VScode. Search "JavaScript semicolon" and under `JavaScript>format:semicolon`, choose `insert`.
-
 `$trigger` is another built-in utility $render provides. [Learn more](https://render-docs.vercel.app/utils/$trigger).
 
-[Click to check]() the common errors in using `$render`.
+### Auto-insert semicolon(;) in VSCode
+
+To configure VSCode to insert `;` at the end of every line of code, press `Ctrl+,` or `Command+,` to go to settings in VScode. Search "JavaScript semicolon" and under `JavaScript>format:semicolon`, choose `insert`.
+

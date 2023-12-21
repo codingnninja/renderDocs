@@ -106,7 +106,7 @@ Any function calls as a reponse to a DOM event like `hover`, `onclick` and so on
       <div id="post">
         <h1>${post.title}</h1>
         <button 
-          onClick="$trigger(${editPost}, null, ${stringify(post)})" 
+          onClick="$trigger(${editPost}, null, '${stringify(post)}')" 
           style="height:30px; width:100px"> Edit posst
         </button>
       </div>

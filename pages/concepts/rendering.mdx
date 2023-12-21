@@ -32,7 +32,7 @@ return `<InferiorItem />`;
 
 * Conditional rendering with the logical AND operator `&&`
 
-You can conditionally render a attributes, contents and component using `&&` when you only want the first operand to be the condition and the second operand the value to render.
+You can conditionally render attributes, contents and component using `&&` when you only want the first operand to be the condition and the second operand the value to render.
 
 > conditionally render content with the logical AND operator `&&`
 ```js copy
@@ -95,8 +95,6 @@ return`
 
 An harmonious rendering happens when all nested functions and children components depend on their parent component for arguments or props. They do not have independent arguments or props of their own.
 
-> Harmonious rendering when the parent component takes no prop.
-
 ```js copy
 const Profile = memoize(({user}) => {
   const modifyName = memoize((user) => `Mr. ${user.name}`);
@@ -116,8 +114,6 @@ The component above is harmonious as the functions within it either take its pro
 
 A disjointed rendering is the opposite of Harmonious Rendering as it only happens when some or all nested functions and children components have their own props or arguments which do not come from their parent component.
 
-Note that memoizeing a disjointed component may lead to unexpected issues if care is not taken.
-
 ```js copy
 const Profile = ({user}) => {
   const toggle = (status=false) => !status;
@@ -131,4 +127,5 @@ const Profile = ({user}) => {
 };
 ```
 
-Memoizeing a disjointed component requires you to be extra careful to avoid unexpect challenges.
+Memoizeing a disjointed component requires you to be extra careful to avoid unexpect challenges. 
+

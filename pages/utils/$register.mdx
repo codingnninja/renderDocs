@@ -2,6 +2,10 @@
 
 `$register` utility is only used in esModules to make components or any functions, in a module, accessible to `$render`. If you don't use `$register` in esModules, your components won't be accessible to `$render`.
 
+```js copy
+$register(component, function, etc...);
+```
+
 import { Callout } from 'nextra/components'
 
 <Callout type="info" emoji="ℹ️">
