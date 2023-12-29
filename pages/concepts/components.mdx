@@ -67,15 +67,18 @@ const list = [{
 <List list=${stringify(list)} />
 ```
 
-## Component placeholders
+## Placeholding component
 
-These are strings of `HTML tags` that represent components that will be needed later.
+It is a component that return a string of `HTML tags` that occupies a position for another components to be rendered later.
 
-```html
-<div id="modal"></div>
+```js
+const ModalPlaceholder = () => '<div class="hidden" id="modal"></div>';
+
+//usage
+<ModalPlaceholder />
 ```
 
-Whenever you want to use modal in $render, you need to add a component placeholder to your page so that you can add or replace its content later.
+Whenever you want to use a modal in $render, you need to add a component placeholder to your page so that you can add or replace its content later.
 
 ## Component parameter
 
@@ -154,7 +157,7 @@ import { Callout } from 'nextra/components'
   Note: You can't $render a component in its own body but you can use it has its own event handler.
 </Callout>
 
-##### A parameters with a default value
+##### A parameter with a default value
 
 Any component with a parameter that has a default value doesn't expect an argument whenever it is used. This is mostly used when you want a component to be self containted or independent.
 

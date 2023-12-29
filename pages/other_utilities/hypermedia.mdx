@@ -18,7 +18,7 @@ In the code you copied from `hypermedia.js`, add your default domain name.
 
 ```js copy
 export function htmx(baseUrl, headers){
-  const __baseUrl = baseUrl || 'https://jsonplaceholder.typicode.com';
+  const __baseUrl = baseUrl || 'https://raw.githubusercontent.com';
   // The rest of the code
 }
 ```
@@ -28,8 +28,8 @@ export function htmx(baseUrl, headers){
 Add your default application headers to the object.
 
 ```js copy
-export function APIs(baseUrl, headers){
-  //const __baseUrl = baseUrl || 'https://your-default-domain.com';
+export function htmx(baseUrl, headers){
+  const __baseUrl = baseUrl || 'https://raw.githubusercontent.com';
   const __headers = headers || {'Content-Type': 'text/html'};
   // The rest of the code
 }
@@ -41,6 +41,13 @@ import { Tabs } from 'nextra/components'
 
 <Tabs items={['cdn', 'module']}>
   <Tabs.Tab> 
+    * Remove `export` from `htmx` function in hypermedia.js
+    ```js copy
+    function htmx(baseUrl, headers){
+      const __baseUrl = baseUrl || 'https://raw.githubusercontent.com';
+      // The rest of the code
+    }
+    ```
     * Add `hypermedia.js` to the `HTML` page where you want to fetch components.
 
     ```html copy
@@ -54,21 +61,23 @@ import { Tabs } from 'nextra/components'
         <div id="root"></div>
 
         <script src="https://cdn.jsdelivr.net/npm/@codingnninja/render/dist/umd/bundle.min.js"></script>
+        <script src="hypermedia.js"></script>
       </body>
     </html>
     ```
     
-    * Use htmx with default domain and headers and make htmx available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
+    * Use htmx with default domain and headers; then make htmx available globally, if not, it won't be accessible in event handlers because they only have access to global `identifiers`.
 
     ```js filename="appFunctions.js" copy
-        const $view = htmx.$view;
+        const $view = htmx().$view;
         $register($view);
     ```
 
     * Use `$view` in event handlers.
 
     ```js filename="appFunctions.js" copy
-        <button onClick="$view('todos/1')">
+        <button 
+          onClick="$view('codingnninja/Web-Design-for-Beginners-Coding-in-HTML-CSS-by-example/master/card%20source%20code/section')">
           get todo
         </button>
       }
@@ -78,14 +87,14 @@ import { Tabs } from 'nextra/components'
     Note: The response from the request must be a string of `HTML` if not, an error will be thrown.
     </Callout>
 
-    * Use `htmx` without or by overrinding default domain and `HTTP headers` and make `htmx` available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
+    * Use `htmx` without or by overrinding default domain and `HTTP headers` and make `htmx` available globally, if not, it won't be accessible in event handlers because they only have access to global `identifiers`.
 
     <Callout type="info" emoji="ℹ️">
-    Note: You only need to `$register` view once in the topmost component or part of your application.
+    Note: You only need to `$register` view once in the top most component or part of your application.
     </Callout>
 
     ```js filename="appFunctions.js" copy
-        const baseUrl = "https://jsonplaceholder.typicode.com";
+        const baseUrl = "https://raw.githubusercontent.com";
         const headers = {
             'Content-Type': 'text/html'
             Cache-Control: max-age=0
@@ -97,7 +106,7 @@ import { Tabs } from 'nextra/components'
     * Ignoring `htmx` optional parameter (headers)
 
     ```js filename="appFunctions.js" copy
-        const baseUrl = "https://jsonplaceholder.typicode.com";
+        const baseUrl = "https://raw.githubusercontent.com";
 
         const $view = htmx(baseUrl).$view;
         $register($view);
@@ -106,37 +115,35 @@ import { Tabs } from 'nextra/components'
     * Use `$view` in event handlers.
 
     ```js filename="todo.html" copy
-        <button onClick="$view('todos/1')">
+        <button 
+          onClick="$view('codingnninja/Web-Design-for-Beginners-Coding-in-HTML-CSS-by-example/master/card%20source%20code/section')">
           get todo
         </button>
-      }
     ```
     * Use `$view` in event handlers with data (browser-rendered).
 
      ```js filename="todos.html" copy
-        <button onClick="$view('todos', '{$stringify(data)}')">
-          get todos
-        </button>
-      }
+      <button onClick="$view('todos', '{$stringify(data)}')">
+        get todos
+      </button>
     ```
 
     * Use `$view` in event handlers with data (server rendered).
 
      ```js filename="todos.html" copy
-        <button onClick="$view('todos', data))">
-          get todos
-        </button>
-      }
+      <button onClick="$view('todos', {name:'Doe'})">
+        get todos
+      </button>
     ```
 
   * Get components from multiple servers
   ```js copy
-        const serverUrl1 = "https://jsonplaceholder.typicode.com";
-        const serverUrl2 = "https://facebook.com";
+      const serverUrl1 = "https://jsonplaceholder.typicode.com";
+      const serverUrl2 = "https://facebook.com";
 
-        const $viewFromServerOne = htmx(serverUrl1).$view;
-        const $viewFromServerTwo = htmx(serverUrl2).$view;
-        $register($viewFromServerOne, $viewFromServerOne);
+      const $viewFromServerOne = htmx(serverUrl1).$view;
+      const $viewFromServerTwo = htmx(serverUrl2).$view;
+      $register($viewFromServerOne, $viewFromServerOne);
 
       //use viewFromServerOne
 
@@ -153,12 +160,19 @@ import { Tabs } from 'nextra/components'
 
   </Tabs.Tab> 
   <Tabs.Tab> 
-
+    * Make sure your `export` htmx in hypermedia. before import it
+    ```js copy
+    function htmx(baseUrl, headers){
+      const __baseUrl = baseUrl || 'https://jsonplaceholder.typicode.com';
+      // The rest of the code
+    }
+    ```
+    * Import htmx from hypermedia.js
     ```js filename="appFunctions.js" copy
       import {htmx} from './hypermedia'
     ```
 
-    * Use htmx with default domain and headers and make `htmx` available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
+    * Use htmx with default domain and headers; then make htmx available globally, if not, it won't be accessible in event handlers because they only have access to global `identifiers`.
 
     ```js filename="appFunctions.js" copy
         const $view = htmx.$view;
@@ -171,14 +185,13 @@ import { Tabs } from 'nextra/components'
         <button onClick="$view('todos/1')">
           get todo
         </button>
-      }
     ```
 
     <Callout type="info" emoji="ℹ️">
-    Note: The response from the request must be a string of `HTML` if not, an error will be thrown.
+    Note: The response from the request must be a string of `HTML` if not, an error will be thrown. So, you can't use jsonplaceholder.typicode.com to test hypermedia.
     </Callout>
 
-    * Use `htmx` by overrinding default domain and `HTTP headers` and make htmx available globally if not, it won't be accessible in event handlers because they only have access to global `variables`.
+    * Use `htmx` by overrinding default domain and `HTTP headers` and make htmx available globally, if not, it won't be accessible in event handlers because they only have access to global `identifiers`.
 
     <Callout type="info" emoji="ℹ️">
     Note: You only need to `$register` view once in the topmost component or part of your application.
@@ -209,7 +222,6 @@ import { Tabs } from 'nextra/components'
         <button onClick="$view('todos/1')">
           get todo
         </button>
-      }
     ```
 
     * Use `$view` in event handlers with a data (browser-rendered).
@@ -218,7 +230,6 @@ import { Tabs } from 'nextra/components'
         <button onClick="$view('todos', '{$stringify(data)}')">
           get todos
         </button>
-      }
     ```
 
     * Use `$view` in event handlers with a data (server rendered).
@@ -227,7 +238,6 @@ import { Tabs } from 'nextra/components'
         <button onClick="$view('todos', {name: 'Ayobami'})">
           get todos
         </button>
-      }
     ```
       * Get components from multiple servers
     ```js filename="appFunctions.js" copy
