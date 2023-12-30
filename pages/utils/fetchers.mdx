@@ -38,7 +38,24 @@ function Users (options = {returnData: false}) {
 };
 ```
 
-`returnData` parameter is used to tell the component whether to render its `View` or return `data` while `options` is used to set all necessary settings such as `page=1`, `limit=10` and so on to fetch data.
+`returnData` parameter is used to tell the component whether to render its `View` or return `data` while `options` is used to set all necessary settings such as `page:1`, `limit:10` and so on to fetch data.
+
+* Adding additional information to options
+
+```js
+const options = {
+  returnData: false,
+  page: 1,
+  limit: 10,
+  url: ''
+}
+
+const users = Users(options);
+
+or
+
+<Users options=${stringify(options)} />
+```
 
 * Data fetching attributes
 
@@ -47,32 +64,32 @@ There are three attributes and you have to use one of them whenever you use a da
 1. data-replace
 
 ```html copy
-<ul id="componentId" data-replace="componentId">
+<ul id="componentId" data-replace="#componentId">
   <li>Item 1</li>
 </ul>
 ```
 
-`data-replace="componentId"` means an update version is set to replace the element with id `componentId`. `data-replace` should be added to a data fetching component to replace an element with an updated version.
+`data-replace="#componentId"` means an update version is set to replace the element with id `#componentId`. `data-replace` should be added to a data fetching component to replace an element with an updated version.
 
 2. data-append
 
 ```html copy
-<ul id="componentId" data-append="componentId">
+<ul id="componentId" data-append="#componentId">
   <li>Item 1</li>
 </ul>
 ```
 
-`data-append="componentId"` means more items should be appended to the element with id `componentId`. `data-append` should be added to a data fetching component to append more items.
+`data-append="#componentId"` means more items should be appended to the element with id `#componentId`. `data-append` should be added to a data fetching component to append more items.
 
 3. data-prepend
 
 ```html copy
-<ul id="componentId" data-prepend="componentId">
+<ul id="#componentId" data-prepend="#componentId">
   <li>Item 1</li>
 </ul>
 ```
 
-`data-prepend="componentId"` means more items should be prepended to an element with id `componentId`. `data-prepend` should be added to a data fetching component to prepend more items.
+`data-prepend="#componentId"` means more items should be prepended to an element with id `#componentId`. `data-prepend` should be added to a data fetching component to prepend more items.
 
 * Working example of a fetcher
 
@@ -176,3 +193,13 @@ function Profiles (options = {returnData: false}) {
     //the rest of the code.
   }
 ```
+
+* Playground
+
+<iframe src="https://codesandbox.io/embed/hwdm3g?view=Editor+%2B+Preview&module=%2Findex.html"
+     width="100%" 
+     height="500px"
+     title="UsersModel"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
