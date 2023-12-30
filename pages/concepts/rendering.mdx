@@ -6,7 +6,7 @@ Rendering and re-rendering often change the state of elements in a component. [L
 
 ### Conditional rendering
 
-In $render, you can render your components based on some conditions using `if`, `&&` and `?:` operators.
+You can render your components based on some conditions using `if`, `&&` and `?:` operators.
 
 * Conditional rendering with `if` statements
 
@@ -53,6 +53,7 @@ return`
 ```
 
 > conditionally render components with the logical AND operator `&&`
+
 ```js copy
 return`
   <li class="item">
@@ -62,6 +63,7 @@ return`
 ```
 
 * Conditional rendering with the ternary operator `?:`
+
 You can use the ternary operator to conditionally render attributes, contents or components.
 
 > conditionally render content
@@ -74,6 +76,7 @@ return`
 ```
 
 > conditionally render attributes
+
 ```js copy
 return`
   <li class="${ hasPaid ? 'paid' : '' }">
@@ -83,6 +86,7 @@ return`
 ```
 
 > conditionally render components
+
 ```js copy
 return`
   <li class="item">

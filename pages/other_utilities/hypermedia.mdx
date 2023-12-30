@@ -137,6 +137,7 @@ import { Tabs } from 'nextra/components'
     ```
 
   * Get components from multiple servers
+  
   ```js copy
       const serverUrl1 = "https://jsonplaceholder.typicode.com";
       const serverUrl2 = "https://facebook.com";
@@ -160,7 +161,7 @@ import { Tabs } from 'nextra/components'
 
   </Tabs.Tab> 
   <Tabs.Tab> 
-    * Make sure your `export` htmx in hypermedia. before import it
+    * Make sure your `export` htmx in hypermedia.js before importing it
     ```js copy
     function htmx(baseUrl, headers){
       const __baseUrl = baseUrl || 'https://jsonplaceholder.typicode.com';

@@ -16,10 +16,6 @@ actions performed by one another. When your components have `one-to-many` or `ma
 
 import { Callout } from 'nextra/components'
 
-<Callout type="info" emoji="ℹ️">
-  Note: $state() is only useful when you are using esModules. You don't need it in a `script` tag (functions are accessible by default). 
-</Callout>
-
 ### Setup $state() utility
 
 import { Steps } from 'nextra/components'
@@ -175,7 +171,7 @@ Now, we have subscribed `Shuffle` to `status` (a property of the state) so that 
 That is how to use the `$state()` utility in $render.
 
 <Callout type="info" emoji="ℹ️">
-  Note: 80% of time, you don't need `$state()` accessor. Instead, pass data, including function utilities, as props. When many components depend on one another, then you can use `$state()` accessor. 
+  Note: Most of the time, you don't need `$state()` accessor. Instead, pass data, including function utilities, as props. When many components depend on one another, then you can use `$state()` accessor. 
 </Callout>
 
 [Click to check]() the common errors in using `$state()`.
